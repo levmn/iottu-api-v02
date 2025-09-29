@@ -1,0 +1,6 @@
+@Web.Iottu.Api.Catalog_HostAddress = http://localhost:5102
+
+GET {{Web.Iottu.Api.Catalog_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

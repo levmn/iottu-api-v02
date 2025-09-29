@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "d3Vr8AVJgB8=",
+  "success": true,
+  "projectFilePath": "/Users/levimagni/coding/fiap/iottu/Web.Iottu.Api.Catalog/Web.Iottu.Api.Catalog.csproj",
+  "expectedPackageFiles": [
+    "/Users/levimagni/.nuget/packages/microsoft.aspnetcore.openapi/9.0.3/microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
+    "/Users/levimagni/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
