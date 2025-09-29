@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "Web.Iottu.Mvc/1.0.0": {
+        "dependencies": {
+          "Shared.Iottu.Contracts": "1.0.0"
+        },
+        "runtime": {
+          "Web.Iottu.Mvc.dll": {}
+        }
+      },
+      "Shared.Iottu.Contracts/1.0.0": {
+        "runtime": {
+          "Shared.Iottu.Contracts.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Web.Iottu.Mvc/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Shared.Iottu.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,12 @@
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/bin/Debug/net9.0/Core.Iottu.Domain.deps.json
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/bin/Debug/net9.0/Core.Iottu.Domain.dll
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/bin/Debug/net9.0/Core.Iottu.Domain.pdb
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/obj/Debug/net9.0/Core.Iottu.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/obj/Debug/net9.0/Core.Iottu.Domain.AssemblyInfoInputs.cache
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/obj/Debug/net9.0/Core.Iottu.Domain.AssemblyInfo.cs
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/obj/Debug/net9.0/Core.Iottu.Domain.csproj.CoreCompileInputs.cache
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/obj/Debug/net9.0/Core.Iottu.Domain.sourcelink.json
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/obj/Debug/net9.0/Core.Iottu.Domain.dll
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/obj/Debug/net9.0/refint/Core.Iottu.Domain.dll
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/obj/Debug/net9.0/Core.Iottu.Domain.pdb
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/obj/Debug/net9.0/ref/Core.Iottu.Domain.dll

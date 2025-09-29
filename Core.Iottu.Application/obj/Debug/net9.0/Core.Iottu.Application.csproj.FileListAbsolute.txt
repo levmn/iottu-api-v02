@@ -1,0 +1,6 @@
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Application/obj/Debug/net9.0/Core.Iottu.Application.csproj.AssemblyReference.cache
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Application/obj/Debug/net9.0/Core.Iottu.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Application/obj/Debug/net9.0/Core.Iottu.Application.AssemblyInfoInputs.cache
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Application/obj/Debug/net9.0/Core.Iottu.Application.AssemblyInfo.cs
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Application/obj/Debug/net9.0/Core.Iottu.Application.csproj.CoreCompileInputs.cache
+/Users/levimagni/coding/fiap/iottu/Core.Iottu.Application/obj/Debug/net9.0/Core.Iottu.Application.sourcelink.json

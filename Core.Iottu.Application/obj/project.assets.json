@@ -1,11 +1,46 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {}
+    "net9.0": {
+      "Core.Iottu.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Core.Iottu.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Core.Iottu.Domain.dll": {}
+        }
+      },
+      "Shared.Iottu.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Shared.Iottu.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shared.Iottu.Contracts.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Core.Iottu.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Core.Iottu.Domain/Core.Iottu.Domain.csproj",
+      "msbuildProject": "../Core.Iottu.Domain/Core.Iottu.Domain.csproj"
+    },
+    "Shared.Iottu.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj",
+      "msbuildProject": "../Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net9.0": []
+    "net9.0": [
+      "Core.Iottu.Domain >= 1.0.0",
+      "Shared.Iottu.Contracts >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "/Users/levimagni/.nuget/packages/": {}
@@ -31,7 +66,14 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/Core.Iottu.Domain.csproj": {
+              "projectPath": "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/Core.Iottu.Domain.csproj"
+            },
+            "/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj": {
+              "projectPath": "/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

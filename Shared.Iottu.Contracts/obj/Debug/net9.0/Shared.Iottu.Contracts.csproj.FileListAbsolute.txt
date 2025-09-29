@@ -1,0 +1,12 @@
+/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/bin/Debug/net9.0/Shared.Iottu.Contracts.deps.json
+/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/bin/Debug/net9.0/Shared.Iottu.Contracts.dll
+/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/bin/Debug/net9.0/Shared.Iottu.Contracts.pdb
+/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/obj/Debug/net9.0/Shared.Iottu.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/obj/Debug/net9.0/Shared.Iottu.Contracts.AssemblyInfoInputs.cache
+/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/obj/Debug/net9.0/Shared.Iottu.Contracts.AssemblyInfo.cs
+/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/obj/Debug/net9.0/Shared.Iottu.Contracts.csproj.CoreCompileInputs.cache
+/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/obj/Debug/net9.0/Shared.Iottu.Contracts.sourcelink.json
+/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/obj/Debug/net9.0/Shared.Iottu.Contracts.dll
+/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/obj/Debug/net9.0/refint/Shared.Iottu.Contracts.dll
+/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/obj/Debug/net9.0/Shared.Iottu.Contracts.pdb
+/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/obj/Debug/net9.0/ref/Shared.Iottu.Contracts.dll
