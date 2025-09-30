@@ -131,6 +131,23 @@ namespace Infrastructure.Iottu.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Status");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 0,
+                            Descricao = "INATIVA"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            Descricao = "ATIVA"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Descricao = "EM MANUTENÇAO"
+                        });
                 });
 
             modelBuilder.Entity("Core.Iottu.Domain.Entities.Tag", b =>

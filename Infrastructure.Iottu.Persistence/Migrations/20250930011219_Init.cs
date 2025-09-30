@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Infrastructure.Iottu.Persistence.Migrations
 {
     /// <inheritdoc />
@@ -115,6 +117,16 @@ namespace Infrastructure.Iottu.Persistence.Migrations
                         principalTable: "Tags",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Status",
+                columns: new[] { "Id", "Descricao" },
+                values: new object[,]
+                {
+                    { 0, "INATIVA" },
+                    { 1, "ATIVA" },
+                    { 2, "EM MANUTENÇAO" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -45,6 +45,12 @@ namespace Infrastructure.Iottu.Persistence.Contexts
                 .Property(s => s.Id)
                 .ValueGeneratedNever();
 
+            modelBuilder.Entity<StatusMoto>().HasData(
+                new StatusMoto { Id = 0, Descricao = "INATIVA" },
+                new StatusMoto { Id = 1, Descricao = "ATIVA" },
+                new StatusMoto { Id = 2, Descricao = "EM MANUTENÇAO" }
+            );
+
             base.OnModelCreating(modelBuilder);
         }
     }
