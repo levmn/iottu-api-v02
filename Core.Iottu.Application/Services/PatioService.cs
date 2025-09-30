@@ -27,6 +27,11 @@ namespace Core.Iottu.Application.Services
             });
         }
 
+        public async Task<int> CountAsync()
+        {
+            return await _patioRepository.CountAsync();
+        }
+
         public async Task<PatioDto?> GetByIdAsync(Guid id)
         {
             var p = await _patioRepository.GetByIdAsync(id);

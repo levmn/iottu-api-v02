@@ -28,6 +28,11 @@ namespace Core.Iottu.Application.Services
             });
         }
 
+        public async Task<int> CountAsync()
+        {
+            return await _tagRepository.CountAsync();
+        }
+
         public async Task<TagDto?> GetByIdAsync(Guid id)
         {
             var tag = await _tagRepository.GetByIdAsync(id);

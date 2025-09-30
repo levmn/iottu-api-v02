@@ -23,6 +23,11 @@ namespace Infrastructure.Iottu.Persistence.Repositories
                 .ToListAsync();
         }
 
+        public async Task<int> CountAsync()
+        {
+            return await _context.Motos.CountAsync();
+        }
+
         public async Task<Moto?> GetByIdAsync(Guid id)
         {
             return await _context.Motos

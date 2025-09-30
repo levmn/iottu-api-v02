@@ -5,6 +5,7 @@ namespace Core.Iottu.Domain.Interfaces
     public interface ITagRepository
     {
         Task<IEnumerable<Tag>> GetAllAsync(int page, int pageSize);
+        Task<int> CountAsync();
         Task<Tag?> GetByIdAsync(Guid id);
         Task AddAsync(Tag tag);
         Task UpdateAsync(Tag tag);

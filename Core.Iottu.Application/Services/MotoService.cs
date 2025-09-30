@@ -28,6 +28,11 @@ namespace Core.Iottu.Application.Services
             });
         }
 
+        public async Task<int> CountAsync()
+        {
+            return await _motoRepository.CountAsync();
+        }
+
         public async Task<MotoDto?> GetByIdAsync(Guid id)
         {
             var moto = await _motoRepository.GetByIdAsync(id);

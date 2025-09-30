@@ -25,9 +25,18 @@ namespace Web.Iottu.Api.Catalog.Controllers
         /// <param name="page">Página (>= 1).</param>
         /// <param name="pageSize">Itens por página.</param>
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<object>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<object>>> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<object>> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
+            if (page < 1 || pageSize < 1)
+                return BadRequest(new { message = "Parâmetros de paginação inválidos: page >= 1 e pageSize >= 1" });
+
+            var totalItems = await _antenaService.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+            if (totalPages > 0 && page > totalPages)
+                return BadRequest(new { message = $"Página solicitada ({page}) maior que total de páginas ({totalPages})." });
+
             var result = await _antenaService.GetAllAsync(page, pageSize);
             var withLinks = result.Select(a => HateoasHelper.AddLinks(a, new Dictionary<string, string>
             {
@@ -35,7 +44,18 @@ namespace Web.Iottu.Api.Catalog.Controllers
                 ["update"] = $"/api/antenas/{a.Id}",
                 ["delete"] = $"/api/antenas/{a.Id}"
             }));
-            return Ok(withLinks);
+
+            var envelope = new Shared.Iottu.Contracts.DTOs.PagedResponse<object>
+            {
+                Page = page,
+                PageSize = pageSize,
+                TotalItems = totalItems,
+                TotalPages = totalPages,
+                Items = withLinks,
+                Links = HateoasHelper.CollectionLinks("/api/antenas", page, pageSize, totalPages)
+            };
+
+            return Ok(envelope);
         }
 
         /// <summary>
@@ -66,6 +86,7 @@ namespace Web.Iottu.Api.Catalog.Controllers
         /// <param name="dto">Dados de criação da antena.</param>
         [HttpPost]
         [ProducesResponseType(typeof(object), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<object>> Create([FromBody] CreateAntenaDto dto)
         {
             var created = await _antenaService.CreateAsync(dto);
@@ -86,6 +107,7 @@ namespace Web.Iottu.Api.Catalog.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<object>> Update(Guid id, [FromBody] UpdateAntenaDto dto)
         {
             var updated = await _antenaService.UpdateAsync(id, dto);

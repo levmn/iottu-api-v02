@@ -5,6 +5,7 @@ namespace Core.Iottu.Application.Services
     public interface IAntenaService
     {
         Task<IEnumerable<AntenaDto>> GetAllAsync(int page, int pageSize);
+        Task<int> CountAsync();
         Task<AntenaDto?> GetByIdAsync(Guid id);
         Task<AntenaDto> CreateAsync(CreateAntenaDto dto);
         Task<AntenaDto?> UpdateAsync(Guid id, UpdateAntenaDto dto);

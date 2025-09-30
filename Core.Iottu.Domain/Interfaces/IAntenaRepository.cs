@@ -5,6 +5,7 @@ namespace Core.Iottu.Domain.Interfaces
     public interface IAntenaRepository
     {
         Task<IEnumerable<Antena>> GetAllAsync(int page, int pageSize);
+        Task<int> CountAsync();
         Task<Antena?> GetByIdAsync(Guid id);
         Task AddAsync(Antena antena);
         Task UpdateAsync(Antena antena);

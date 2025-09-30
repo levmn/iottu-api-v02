@@ -23,6 +23,26 @@ namespace Web.Iottu.Api.Catalog.Helpers
             return dict;
         }
 
+        public static IEnumerable<object> CollectionLinks(string basePath, int page, int pageSize, int totalPages)
+        {
+            var links = new List<object>
+            {
+                new { href = $"{basePath}?page={page}&pageSize={pageSize}", rel = "self", method = "GET" }
+            };
+
+            if (page > 1)
+            {
+                links.Add(new { href = $"{basePath}?page={page - 1}&pageSize={pageSize}", rel = "prev", method = "GET" });
+            }
+
+            if (page < totalPages)
+            {
+                links.Add(new { href = $"{basePath}?page={page + 1}&pageSize={pageSize}", rel = "next", method = "GET" });
+            }
+
+            return links;
+        }
+
         private static string GetHttpMethod(string rel)
         {
             return rel.ToLower() switch

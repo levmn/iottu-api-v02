@@ -25,19 +25,37 @@ namespace Web.Iottu.Api.Catalog.Controllers
         /// <param name="page">Página (>= 1).</param>
         /// <param name="pageSize">Itens por página.</param>
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<object>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<object>>> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<object>> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
-            var motos = await _motoService.GetAllAsync(page, pageSize);
+            if (page < 1 || pageSize < 1)
+                return BadRequest(new { message = "Parâmetros de paginação inválidos: page >= 1 e pageSize >= 1" });
 
-            var result = motos.Select(m => HateoasHelper.AddLinks(m, new Dictionary<string, string>
+            var totalItems = await _motoService.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+            if (totalPages > 0 && page > totalPages)
+                return BadRequest(new { message = $"Página solicitada ({page}) maior que total de páginas ({totalPages})." });
+
+            var motos = await _motoService.GetAllAsync(page, pageSize);
+            var itemsWithLinks = motos.Select(m => HateoasHelper.AddLinks(m, new Dictionary<string, string>
             {
                 ["self"] = $"/api/motos/{m.Id}",
                 ["update"] = $"/api/motos/{m.Id}",
                 ["delete"] = $"/api/motos/{m.Id}"
             }));
 
-            return Ok(result);
+            var envelope = new Shared.Iottu.Contracts.DTOs.PagedResponse<object>
+            {
+                Page = page,
+                PageSize = pageSize,
+                TotalItems = totalItems,
+                TotalPages = totalPages,
+                Items = itemsWithLinks,
+                Links = HateoasHelper.CollectionLinks("/api/motos", page, pageSize, totalPages)
+            };
+
+            return Ok(envelope);
         }
 
         /// <summary>

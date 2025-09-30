@@ -26,9 +26,18 @@ namespace Web.Iottu.Api.Catalog.Controllers
         /// <param name="pageSize">Itens por página.</param>
         /// <returns>Lista paginada de tags com HATEOAS.</returns>
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<object>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<object>>> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<object>> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
+            if (page < 1 || pageSize < 1)
+                return BadRequest(new { message = "Parâmetros de paginação inválidos: page >= 1 e pageSize >= 1" });
+
+            var totalItems = await _tagService.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+            if (totalPages > 0 && page > totalPages)
+                return BadRequest(new { message = $"Página solicitada ({page}) maior que total de páginas ({totalPages})." });
+
             var result = await _tagService.GetAllAsync(page, pageSize);
             var withLinks = result.Select(t => HateoasHelper.AddLinks(t, new Dictionary<string, string>
             {
@@ -36,7 +45,18 @@ namespace Web.Iottu.Api.Catalog.Controllers
                 ["update"] = $"/api/tags/{t.Id}",
                 ["delete"] = $"/api/tags/{t.Id}"
             }));
-            return Ok(withLinks);
+
+            var envelope = new Shared.Iottu.Contracts.DTOs.PagedResponse<object>
+            {
+                Page = page,
+                PageSize = pageSize,
+                TotalItems = totalItems,
+                TotalPages = totalPages,
+                Items = withLinks,
+                Links = HateoasHelper.CollectionLinks("/api/tags", page, pageSize, totalPages)
+            };
+
+            return Ok(envelope);
         }
 
         /// <summary>

@@ -25,9 +25,18 @@ namespace Web.Iottu.Api.Catalog.Controllers
         /// <param name="page">Página (>= 1).</param>
         /// <param name="pageSize">Itens por página.</param>
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<object>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<object>>> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<object>> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
+            if (page < 1 || pageSize < 1)
+                return BadRequest(new { message = "Parâmetros de paginação inválidos: page >= 1 e pageSize >= 1" });
+
+            var totalItems = await _patioService.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+            if (totalPages > 0 && page > totalPages)
+                return BadRequest(new { message = $"Página solicitada ({page}) maior que total de páginas ({totalPages})." });
+
             var patios = await _patioService.GetAllAsync(page, pageSize);
             var result = patios.Select(p => HateoasHelper.AddLinks(p, new Dictionary<string, string>
             {
@@ -35,7 +44,18 @@ namespace Web.Iottu.Api.Catalog.Controllers
                 ["update"] = $"/api/patios/{p.Id}",
                 ["delete"] = $"/api/patios/{p.Id}"
             }));
-            return Ok(result);
+
+            var envelope = new Shared.Iottu.Contracts.DTOs.PagedResponse<object>
+            {
+                Page = page,
+                PageSize = pageSize,
+                TotalItems = totalItems,
+                TotalPages = totalPages,
+                Items = result,
+                Links = HateoasHelper.CollectionLinks("/api/patios", page, pageSize, totalPages)
+            };
+
+            return Ok(envelope);
         }
 
         /// <summary>
@@ -65,6 +85,7 @@ namespace Web.Iottu.Api.Catalog.Controllers
         /// <param name="dto">Dados de criação do patio.</param>
         [HttpPost]
         [ProducesResponseType(typeof(object), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<object>> Create([FromBody] CreatePatioDto dto)
         {
             var created = await _patioService.CreateAsync(dto);
@@ -85,6 +106,7 @@ namespace Web.Iottu.Api.Catalog.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<object>> Update(Guid id, [FromBody] UpdatePatioDto dto)
         {
             var updated = await _patioService.UpdateAsync(id, dto);

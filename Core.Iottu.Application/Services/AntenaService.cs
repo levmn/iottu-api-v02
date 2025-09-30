@@ -24,6 +24,11 @@ namespace Core.Iottu.Application.Services
             });
         }
 
+        public async Task<int> CountAsync()
+        {
+            return await _antenaRepository.CountAsync();
+        }
+
         public async Task<AntenaDto?> GetByIdAsync(Guid id)
         {
             var antena = await _antenaRepository.GetByIdAsync(id);
