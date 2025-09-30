@@ -5,6 +5,9 @@ using Web.Iottu.Api.Catalog.Helpers;
 
 namespace Web.Iottu.Api.Catalog.Controllers
 {
+    /// <summary>
+    /// Endpoints para gerenciamento de Antenas.
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class AntenasController : ControllerBase
@@ -16,8 +19,13 @@ namespace Web.Iottu.Api.Catalog.Controllers
             _antenaService = antenaService;
         }
 
-        // GET /api/antenas?page=1&pageSize=10
+        /// <summary>
+        /// Lista antenas com paginação.
+        /// </summary>
+        /// <param name="page">Página (>= 1).</param>
+        /// <param name="pageSize">Itens por página.</param>
         [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<object>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<object>>> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
             var result = await _antenaService.GetAllAsync(page, pageSize);
@@ -30,8 +38,13 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return Ok(withLinks);
         }
 
-        // GET /api/antenas/{id}
+        /// <summary>
+        /// Obtém uma antena por id.
+        /// </summary>
+        /// <param name="id">Id da antena.</param>
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<object>> GetById(Guid id)
         {
             var antena = await _antenaService.GetByIdAsync(id);
@@ -47,8 +60,12 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return Ok(HateoasHelper.AddLinks(antena, links));
         }
 
-        // POST /api/antenas
+        /// <summary>
+        /// Cria uma antena.
+        /// </summary>
+        /// <param name="dto">Dados de criação da antena.</param>
         [HttpPost]
+        [ProducesResponseType(typeof(object), StatusCodes.Status201Created)]
         public async Task<ActionResult<object>> Create([FromBody] CreateAntenaDto dto)
         {
             var created = await _antenaService.CreateAsync(dto);
@@ -61,8 +78,14 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, HateoasHelper.AddLinks(created, links));
         }
 
-        // PUT /api/antenas/{id}
+        /// <summary>
+        /// Atualiza uma antena.
+        /// </summary>
+        /// <param name="id">Id da antena.</param>
+        /// <param name="dto">Dados para atualização.</param>
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<object>> Update(Guid id, [FromBody] UpdateAntenaDto dto)
         {
             var updated = await _antenaService.UpdateAsync(id, dto);
@@ -77,8 +100,13 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return Ok(HateoasHelper.AddLinks(updated, links));
         }
 
-        // DELETE /api/antenas/{id}
+        /// <summary>
+        /// Remove uma antena.
+        /// </summary>
+        /// <param name="id">Id da antena.</param>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(Guid id)
         {
             var deleted = await _antenaService.DeleteAsync(id);

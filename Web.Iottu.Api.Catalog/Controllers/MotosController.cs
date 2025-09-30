@@ -5,6 +5,9 @@ using Web.Iottu.Api.Catalog.Helpers;
 
 namespace Web.Iottu.Api.Catalog.Controllers
 {
+    /// <summary>
+    /// Endpoints para gerenciamento de Motos.
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class MotosController : ControllerBase
@@ -16,9 +19,13 @@ namespace Web.Iottu.Api.Catalog.Controllers
             _motoService = motoService;
         }
 
-        // GET /api/motos?page=1&pageSize=10
+        /// <summary>
+        /// Lista motos com paginação.
+        /// </summary>
+        /// <param name="page">Página (>= 1).</param>
+        /// <param name="pageSize">Itens por página.</param>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<object>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<object>>> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
             var motos = await _motoService.GetAllAsync(page, pageSize);
@@ -33,9 +40,12 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return Ok(result);
         }
 
-        // GET /api/motos/{id}
+        /// <summary>
+        /// Obtém uma moto por id.
+        /// </summary>
+        /// <param name="id">Id da moto.</param>
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<object>> GetById(Guid id)
         {
@@ -52,9 +62,12 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return Ok(HateoasHelper.AddLinks(moto, links));
         }
 
-        // POST /api/motos
+        /// <summary>
+        /// Cria uma nova moto.
+        /// </summary>
+        /// <param name="dto">Dados de criação da moto.</param>
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<object>> Create([FromBody] CreateMotoDto dto)
         {
@@ -73,9 +86,13 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, HateoasHelper.AddLinks(created, links));
         }
 
-        // PUT /api/motos/{id}
+        /// <summary>
+        /// Atualiza uma moto existente.
+        /// </summary>
+        /// <param name="id">Id da moto.</param>
+        /// <param name="dto">Dados de atualização.</param>
         [HttpPut("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<object>> Update(Guid id, [FromBody] UpdateMotoDto dto)
@@ -96,7 +113,10 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return Ok(HateoasHelper.AddLinks(updated, links));
         }
 
-        // DELETE /api/motos/{id}
+        /// <summary>
+        /// Remove uma moto.
+        /// </summary>
+        /// <param name="id">Id da moto.</param>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

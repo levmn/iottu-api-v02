@@ -5,6 +5,9 @@ using Web.Iottu.Api.Catalog.Helpers;
 
 namespace Web.Iottu.Api.Catalog.Controllers
 {
+    /// <summary>
+    /// Endpoints para gerenciamento de Tags.
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class TagsController : ControllerBase
@@ -16,8 +19,14 @@ namespace Web.Iottu.Api.Catalog.Controllers
             _tagService = tagService;
         }
 
-        // GET /api/tags?page=1&pageSize=10
+        /// <summary>
+        /// Lista tags com paginação.
+        /// </summary>
+        /// <param name="page">Página (>= 1).</param>
+        /// <param name="pageSize">Itens por página.</param>
+        /// <returns>Lista paginada de tags com HATEOAS.</returns>
         [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<object>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<object>>> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
             var result = await _tagService.GetAllAsync(page, pageSize);
@@ -30,8 +39,14 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return Ok(withLinks);
         }
 
-        // GET /api/tags/{id}
+        /// <summary>
+        /// Obtém uma tag por id.
+        /// </summary>
+        /// <param name="id">Id da tag.</param>
+        /// <returns>Tag com HATEOAS.</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<object>> GetById(Guid id)
         {
             var tag = await _tagService.GetByIdAsync(id);
@@ -47,8 +62,14 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return Ok(HateoasHelper.AddLinks(tag, links));
         }
 
-        // POST /api/tags
+        /// <summary>
+        /// Cria uma nova tag.
+        /// </summary>
+        /// <param name="dto">Dados de criação da tag.</param>
+        /// <returns>Tag criada com HATEOAS.</returns>
         [HttpPost]
+        [ProducesResponseType(typeof(object), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<object>> Create([FromBody] CreateTagDto dto)
         {
             var created = await _tagService.CreateAsync(dto);
@@ -61,8 +82,16 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, HateoasHelper.AddLinks(created, links));
         }
 
-        // PUT /api/tags/{id}
+        /// <summary>
+        /// Atualiza uma tag.
+        /// </summary>
+        /// <param name="id">Id da tag.</param>
+        /// <param name="dto">Dados para atualização.</param>
+        /// <returns>Tag atualizada com HATEOAS.</returns>
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<object>> Update(Guid id, [FromBody] UpdateTagDto dto)
         {
             var updated = await _tagService.UpdateAsync(id, dto);
@@ -77,8 +106,13 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return Ok(HateoasHelper.AddLinks(updated, links));
         }
 
-        // DELETE /api/tags/{id}
+        /// <summary>
+        /// Remove uma tag.
+        /// </summary>
+        /// <param name="id">Id da tag.</param>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(Guid id)
         {
             var deleted = await _tagService.DeleteAsync(id);

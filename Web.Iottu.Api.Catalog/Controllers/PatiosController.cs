@@ -5,6 +5,9 @@ using Web.Iottu.Api.Catalog.Helpers;
 
 namespace Web.Iottu.Api.Catalog.Controllers
 {
+    /// <summary>
+    /// Endpoints para gerenciamento de Patios.
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class PatiosController : ControllerBase
@@ -16,8 +19,13 @@ namespace Web.Iottu.Api.Catalog.Controllers
             _patioService = patioService;
         }
 
-        // GET /api/patios?page=1&pageSize=10
+        /// <summary>
+        /// Lista patios com paginação.
+        /// </summary>
+        /// <param name="page">Página (>= 1).</param>
+        /// <param name="pageSize">Itens por página.</param>
         [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<object>), StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<object>>> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
             var patios = await _patioService.GetAllAsync(page, pageSize);
@@ -30,8 +38,13 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return Ok(result);
         }
 
-        // GET /api/patios/{id}
+        /// <summary>
+        /// Obtém um patio por id.
+        /// </summary>
+        /// <param name="id">Id do patio.</param>
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<object>> GetById(Guid id)
         {
             var patio = await _patioService.GetByIdAsync(id);
@@ -46,8 +59,12 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return Ok(HateoasHelper.AddLinks(patio, links));
         }
 
-        // POST /api/patios
+        /// <summary>
+        /// Cria um novo patio.
+        /// </summary>
+        /// <param name="dto">Dados de criação do patio.</param>
         [HttpPost]
+        [ProducesResponseType(typeof(object), StatusCodes.Status201Created)]
         public async Task<ActionResult<object>> Create([FromBody] CreatePatioDto dto)
         {
             var created = await _patioService.CreateAsync(dto);
@@ -60,8 +77,14 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, HateoasHelper.AddLinks(created, links));
         }
 
-        // PUT /api/patios/{id}
+        /// <summary>
+        /// Atualiza um patio existente.
+        /// </summary>
+        /// <param name="id">Id do patio.</param>
+        /// <param name="dto">Dados para atualização.</param>
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<object>> Update(Guid id, [FromBody] UpdatePatioDto dto)
         {
             var updated = await _patioService.UpdateAsync(id, dto);
@@ -76,8 +99,13 @@ namespace Web.Iottu.Api.Catalog.Controllers
             return Ok(HateoasHelper.AddLinks(updated, links));
         }
 
-        // DELETE /api/patios/{id}
+        /// <summary>
+        /// Remove um patio.
+        /// </summary>
+        /// <param name="id">Id do patio.</param>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(Guid id)
         {
             var deleted = await _patioService.DeleteAsync(id);
