@@ -71,8 +71,8 @@ namespace Infrastructure.Iottu.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("NVARCHAR2(2000)");
 
-                    b.Property<Guid>("StatusId")
-                        .HasColumnType("RAW(16)");
+                    b.Property<int>("StatusId")
+                        .HasColumnType("NUMBER(10)");
 
                     b.Property<Guid>("TagId")
                         .HasColumnType("RAW(16)");
@@ -114,21 +114,15 @@ namespace Infrastructure.Iottu.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("NVARCHAR2(2000)");
 
-                    b.Property<Guid?>("ResponsavelId")
-                        .HasColumnType("RAW(16)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ResponsavelId");
 
                     b.ToTable("Patios");
                 });
 
             modelBuilder.Entity("Core.Iottu.Domain.Entities.StatusMoto", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("RAW(16)");
+                    b.Property<int>("Id")
+                        .HasColumnType("NUMBER(10)");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -172,29 +166,6 @@ namespace Infrastructure.Iottu.Persistence.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("Core.Iottu.Domain.Entities.Usuario", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("RAW(16)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Usuarios");
-                });
-
             modelBuilder.Entity("Core.Iottu.Domain.Entities.Antena", b =>
                 {
                     b.HasOne("Core.Iottu.Domain.Entities.Patio", "Patio")
@@ -231,15 +202,6 @@ namespace Infrastructure.Iottu.Persistence.Migrations
                     b.Navigation("Tag");
                 });
 
-            modelBuilder.Entity("Core.Iottu.Domain.Entities.Patio", b =>
-                {
-                    b.HasOne("Core.Iottu.Domain.Entities.Usuario", "Responsavel")
-                        .WithMany("PatiosResponsaveis")
-                        .HasForeignKey("ResponsavelId");
-
-                    b.Navigation("Responsavel");
-                });
-
             modelBuilder.Entity("Core.Iottu.Domain.Entities.Tag", b =>
                 {
                     b.HasOne("Core.Iottu.Domain.Entities.Antena", "Antena")
@@ -271,11 +233,6 @@ namespace Infrastructure.Iottu.Persistence.Migrations
             modelBuilder.Entity("Core.Iottu.Domain.Entities.Tag", b =>
                 {
                     b.Navigation("Moto");
-                });
-
-            modelBuilder.Entity("Core.Iottu.Domain.Entities.Usuario", b =>
-                {
-                    b.Navigation("PatiosResponsaveis");
                 });
 #pragma warning restore 612, 618
         }

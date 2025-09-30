@@ -12,32 +12,6 @@ namespace Infrastructure.Iottu.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Status",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
-                    Descricao = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Status", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Usuarios",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
-                    Nome = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    Email = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    Senha = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usuarios", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Patios",
                 columns: table => new
                 {
@@ -46,17 +20,23 @@ namespace Infrastructure.Iottu.Persistence.Migrations
                     Numero = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
                     Cidade = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
                     Estado = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    Capacidade = table.Column<int>(type: "NUMBER(10)", nullable: false),
-                    ResponsavelId = table.Column<Guid>(type: "RAW(16)", nullable: true)
+                    Capacidade = table.Column<int>(type: "NUMBER(10)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Patios", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Patios_Usuarios_ResponsavelId",
-                        column: x => x.ResponsavelId,
-                        principalTable: "Usuarios",
-                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Status",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "NUMBER(10)", nullable: false),
+                    Descricao = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Status", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -110,7 +90,7 @@ namespace Infrastructure.Iottu.Persistence.Migrations
                     Modelo = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
                     Chassi = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
                     NumeroMotor = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    StatusId = table.Column<Guid>(type: "RAW(16)", nullable: false),
+                    StatusId = table.Column<int>(type: "NUMBER(10)", nullable: false),
                     TagId = table.Column<Guid>(type: "RAW(16)", nullable: false),
                     PatioId = table.Column<Guid>(type: "RAW(16)", nullable: false)
                 },
@@ -159,11 +139,6 @@ namespace Infrastructure.Iottu.Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Patios_ResponsavelId",
-                table: "Patios",
-                column: "ResponsavelId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Tags_AntenaId",
                 table: "Tags",
                 column: "AntenaId");
@@ -186,9 +161,6 @@ namespace Infrastructure.Iottu.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Patios");
-
-            migrationBuilder.DropTable(
-                name: "Usuarios");
         }
     }
 }
