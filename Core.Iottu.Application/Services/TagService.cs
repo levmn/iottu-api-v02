@@ -19,8 +19,12 @@ namespace Core.Iottu.Application.Services
             return tags.Select(t => new TagDto
             {
                 Id = t.Id,
-                Codigo = t.Codigo,
-                Ativa = t.Ativa
+                CodigoRFID = t.CodigoRFID,
+                SSIDWifi = t.SSIDWifi,
+                Latitude = t.Latitude,
+                Longitude = t.Longitude,
+                DataHora = t.DataHora,
+                AntenaId = t.AntenaId,
             });
         }
 
@@ -32,21 +36,55 @@ namespace Core.Iottu.Application.Services
             return new TagDto
             {
                 Id = tag.Id,
-                Codigo = tag.Codigo,
-                Ativa = tag.Ativa
+                CodigoRFID = tag.CodigoRFID,
+                SSIDWifi = tag.SSIDWifi,
+                Latitude = tag.Latitude,
+                Longitude = tag.Longitude,
+                DataHora = tag.DataHora,
+                AntenaId = tag.AntenaId,
             };
         }
 
         public async Task<TagDto> CreateAsync(CreateTagDto dto)
         {
-            var tag = new Tag(dto.Codigo);
+            var tag = new Tag(dto.CodigoRFID, dto.SSIDWifi, dto.Latitude, dto.Longitude, dto.DataHora, dto.AntenaId);
             await _tagRepository.AddAsync(tag);
 
             return new TagDto
             {
                 Id = tag.Id,
-                Codigo = tag.Codigo,
-                Ativa = tag.Ativa
+                CodigoRFID = tag.CodigoRFID,
+                SSIDWifi = tag.SSIDWifi,
+                Latitude = tag.Latitude,
+                Longitude = tag.Longitude,
+                DataHora = tag.DataHora,
+                AntenaId = tag.AntenaId,
+            };
+        }
+
+        public async Task<TagDto?> UpdateAsync(Guid id, UpdateTagDto dto)
+        {
+            var tag = await _tagRepository.GetByIdAsync(id);
+            if (tag == null) return null;
+
+            typeof(Tag).GetProperty("CodigoRFID")!.SetValue(tag, dto.CodigoRFID);
+            typeof(Tag).GetProperty("SSIDWifi")!.SetValue(tag, dto.SSIDWifi);
+            typeof(Tag).GetProperty("Latitude")!.SetValue(tag, dto.Latitude);
+            typeof(Tag).GetProperty("Longitude")!.SetValue(tag, dto.Longitude);
+            typeof(Tag).GetProperty("DataHora")!.SetValue(tag, dto.DataHora);
+            typeof(Tag).GetProperty("AntenaId")!.SetValue(tag, dto.AntenaId);
+
+            await _tagRepository.UpdateAsync(tag);
+
+            return new TagDto
+            {
+                Id = tag.Id,
+                CodigoRFID = tag.CodigoRFID,
+                SSIDWifi = tag.SSIDWifi,
+                Latitude = tag.Latitude,
+                Longitude = tag.Longitude,
+                DataHora = tag.DataHora,
+                AntenaId = tag.AntenaId,
             };
         }
 
@@ -56,26 +94,6 @@ namespace Core.Iottu.Application.Services
             if (tag == null) return false;
 
             await _tagRepository.DeleteAsync(id);
-            return true;
-        }
-
-        public async Task<bool> AtivarAsync(Guid id)
-        {
-            var tag = await _tagRepository.GetByIdAsync(id);
-            if (tag == null) return false;
-
-            tag.Ativar();
-            await _tagRepository.UpdateAsync(tag);
-            return true;
-        }
-
-        public async Task<bool> DesativarAsync(Guid id)
-        {
-            var tag = await _tagRepository.GetByIdAsync(id);
-            if (tag == null) return false;
-
-            tag.Desativar();
-            await _tagRepository.UpdateAsync(tag);
             return true;
         }
     }

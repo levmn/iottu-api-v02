@@ -1,9 +1,10 @@
-using Core.Iottu.Domain.Interfaces;
 using Infrastructure.Iottu.Persistence.Contexts;
+using Core.Iottu.Application.Services;
+using Core.Iottu.Domain.Interfaces;
 using Infrastructure.Iottu.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Microsoft.OpenApi.Any;
+using Web.Iottu.Api.Catalog.Helpers;
 using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,11 +18,18 @@ var baseConnection = builder.Configuration.GetConnectionString("DefaultConnectio
 var connectionString = $"User Id={dbUser};Password={dbPassword};{baseConnection}";
 
 builder.Services.AddDbContext<IottuDbContext>(options =>
-    options.UseOracle(connectionString));
+    options.UseOracle(connectionString, o => o.MigrationsAssembly("Infrastructure.Iottu.Persistence")));
+
+builder.Services.AddScoped<IMotoService, MotoService>();
+builder.Services.AddScoped<ITagService, TagService>();
+builder.Services.AddScoped<IAntenaService, AntenaService>();
+builder.Services.AddScoped<IPatioService, PatioService>();
+
 
 builder.Services.AddScoped<IMotoRepository, MotoRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IAntenaRepository, AntenaRepository>();
+builder.Services.AddScoped<IPatioRepository, PatioRepository>();
 
 builder.Services.AddControllers();
 
@@ -29,26 +37,26 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo 
-    { 
-        Title = "Iottu API Catalog", 
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Iottu API",
         Version = "v1",
-        Description = "API RESTful para gestão de Motos, Tags e Antenas"
+        Description = "API RESTful para gestão de Motos Mottu"
     });
 
-    // Exemplo de schema para Moto
-    c.MapType<Shared.Iottu.Contracts.DTOs.MotoDto>(() => new OpenApiSchema
+    var xmlFiles = new[]
     {
-        Type = "object",
-        Properties =
-        {
-            ["id"] = new OpenApiSchema { Type = "string", Example = new OpenApiString("1") },
-            ["placa"] = new OpenApiSchema { Type = "string", Example = new OpenApiString("ABC-1234") },
-            ["modelo"] = new OpenApiSchema { Type = "string", Example = new OpenApiString("Honda CG 160 | Mottu-E") },
-            ["cor"] = new OpenApiSchema { Type = "string", Example = new OpenApiString("Preta") },
-            ["tagId"] = new OpenApiSchema { Type = "string", Example = new OpenApiString("a2fa1f7a-a2bb-471f-a1d0-c453863b5e6e") }
-        }
-    });
+        Path.Combine(AppContext.BaseDirectory, "Web.Iottu.Api.Catalog.xml"),
+        Path.Combine(AppContext.BaseDirectory, "Shared.Iottu.Contracts.xml"),
+    };
+    foreach (var xml in xmlFiles)
+    {
+        if (File.Exists(xml))
+            c.IncludeXmlComments(xml);
+    }
+
+    c.SchemaFilter<ExamplesSchemaFilter>();
+    c.OperationFilter<QueryParameterOperationFilter>();
 });
 
 var app = builder.Build();

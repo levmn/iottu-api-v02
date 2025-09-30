@@ -50,6 +50,23 @@ namespace Core.Iottu.Application.Services
             };
         }
 
+        public async Task<AntenaDto?> UpdateAsync(Guid id, UpdateAntenaDto dto)
+        {
+            var antena = await _antenaRepository.GetByIdAsync(id);
+            if (antena == null) return null;
+
+            var updated = new Antena(dto.Localizacao, dto.Identificador);
+            typeof(Antena).GetProperty("Id")!.SetValue(updated, antena.Id);
+            await _antenaRepository.UpdateAsync(updated);
+
+            return new AntenaDto
+            {
+                Id = updated.Id,
+                Localizacao = updated.Localizacao,
+                Identificador = updated.Identificador
+            };
+        }
+
         public async Task<bool> DeleteAsync(Guid id)
         {
             var antena = await _antenaRepository.GetByIdAsync(id);

@@ -21,8 +21,10 @@ namespace Core.Iottu.Application.Services
                 Id = m.Id,
                 Placa = m.Placa,
                 Modelo = m.Modelo,
-                Cor = m.Cor,
-                TagId = m.TagId
+                Chassi = m.Chassi,
+                NumeroMotor = m.NumeroMotor,
+                StatusId = m.StatusId,
+                TagId = m.TagId,
             });
         }
 
@@ -36,14 +38,17 @@ namespace Core.Iottu.Application.Services
                 Id = moto.Id,
                 Placa = moto.Placa,
                 Modelo = moto.Modelo,
-                Cor = moto.Cor,
-                TagId = moto.TagId
+                Chassi = moto.Chassi,
+                NumeroMotor = moto.NumeroMotor,
+                StatusId = moto.StatusId,
+                TagId = moto.TagId,
+                PatioId = moto.PatioId
             };
         }
 
         public async Task<MotoDto> CreateAsync(CreateMotoDto dto)
         {
-            var moto = new Moto(dto.Placa, dto.Modelo, dto.Cor, dto.TagId);
+            var moto = new Moto(dto.Placa, dto.Modelo, dto.Chassi, dto.NumeroMotor, dto.StatusId, dto.TagId, dto.PatioId);
             await _motoRepository.AddAsync(moto);
 
             return new MotoDto
@@ -51,8 +56,11 @@ namespace Core.Iottu.Application.Services
                 Id = moto.Id,
                 Placa = moto.Placa,
                 Modelo = moto.Modelo,
-                Cor = moto.Cor,
-                TagId = moto.TagId
+                Chassi = moto.Chassi,
+                NumeroMotor = moto.NumeroMotor,
+                StatusId = moto.StatusId,
+                TagId = moto.TagId,
+                PatioId = moto.PatioId
             };
         }
 
@@ -61,7 +69,7 @@ namespace Core.Iottu.Application.Services
             var moto = await _motoRepository.GetByIdAsync(id);
             if (moto == null) return null;
 
-            moto.Atualizar(dto.Modelo, dto.Cor);
+            moto.Atualizar(dto.Modelo, dto.Chassi, dto.NumeroMotor, dto.StatusId);
             await _motoRepository.UpdateAsync(moto);
 
             return new MotoDto
@@ -69,8 +77,11 @@ namespace Core.Iottu.Application.Services
                 Id = moto.Id,
                 Placa = moto.Placa,
                 Modelo = moto.Modelo,
-                Cor = moto.Cor,
-                TagId = moto.TagId
+                Chassi = moto.Chassi,
+                NumeroMotor = moto.NumeroMotor,
+                StatusId = moto.StatusId,
+                TagId = moto.TagId,
+                PatioId = moto.PatioId
             };
         }
 

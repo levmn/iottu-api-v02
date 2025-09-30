@@ -11,53 +11,41 @@ namespace Infrastructure.Iottu.Persistence.Contexts
         public DbSet<Moto> Motos { get; set; } = null!;
         public DbSet<Tag> Tags { get; set; } = null!;
         public DbSet<Antena> Antenas { get; set; } = null!;
+        public DbSet<StatusMoto> Status { get; set; } = null!;
+        public DbSet<Patio> Patios { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Moto>(entity =>
-            {
-                entity.ToTable("Motos");
-                entity.HasKey(m => m.Id);
+            modelBuilder.Entity<Moto>()
+            .HasOne(m => m.Tag)
+            .WithOne(t => t.Moto)
+            .HasForeignKey<Moto>(m => m.TagId);
 
-                entity.Property(m => m.Placa)
-                    .IsRequired()
-                    .HasMaxLength(10);
+            modelBuilder.Entity<Tag>()
+                .HasOne(t => t.Antena)
+                .WithMany(a => a.Tags)
+                .HasForeignKey(t => t.AntenaId);
 
-                entity.Property(m => m.Modelo)
-                    .IsRequired()
-                    .HasMaxLength(50);
+            modelBuilder.Entity<Moto>()
+                .HasOne(m => m.Patio)
+                .WithMany(p => p.Motos)
+                .HasForeignKey(m => m.PatioId);
 
-                entity.Property(m => m.Cor)
-                    .HasMaxLength(30);
+            modelBuilder.Entity<Antena>()
+                .HasOne(a => a.Patio)
+                .WithMany(p => p.Antenas)
+                .HasForeignKey(a => a.PatioId);
 
-                entity.HasOne(m => m.Tag)
-                    .WithOne(t => t.Moto)
-                    .HasForeignKey<Moto>(m => m.TagId);
-            });
+            modelBuilder.Entity<Moto>()
+                .HasOne(m => m.Status)
+                .WithMany(s => s.Motos)
+                .HasForeignKey(m => m.StatusId);
 
-            modelBuilder.Entity<Tag>(entity =>
-            {
-                entity.ToTable("Tags");
-                entity.HasKey(t => t.Id);
+            modelBuilder.Entity<StatusMoto>()
+                .Property(s => s.Id)
+                .ValueGeneratedNever();
 
-                entity.Property(t => t.Codigo)
-                    .IsRequired()
-                    .HasMaxLength(50);
-            });
-
-            modelBuilder.Entity<Antena>(entity =>
-            {
-                entity.ToTable("Antenas");
-                entity.HasKey(a => a.Id);
-
-                entity.Property(a => a.Localizacao)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(a => a.Identificador)
-                    .IsRequired()
-                    .HasMaxLength(50);
-            });
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

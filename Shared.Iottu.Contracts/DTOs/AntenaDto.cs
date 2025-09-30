@@ -12,4 +12,10 @@ namespace Shared.Iottu.Contracts.DTOs
         public string Localizacao { get; set; } = string.Empty;
         public string Identificador { get; set; } = string.Empty;
     }
+
+    public class UpdateAntenaDto
+    {
+        public string Localizacao { get; set; } = string.Empty;
+        public string Identificador { get; set; } = string.Empty;
+    }
 }
