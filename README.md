@@ -39,15 +39,63 @@ Principais práticas adotadas:
 - .NET SDK 9.0
 - Acesso a banco Oracle (para migrations/execução)
 
-### Variáveis de ambiente
-A API usa variáveis de ambiente para a conexão com o Oracle. Configure um arquivo `.env` na raiz do diretório `Web.Iottu.Api.Catalog` com:
+## 🧱 Migrations (EF Core + Oracle) e Atualização do Banco
+Esta seção descreve como criar e aplicar migrations no projeto e como atualizar o banco Oracle do seu usuário.
 
+### 1) Instalar o EF Core
+```bash
+dotnet tool install --global dotnet-ef
+# Se já tiver instalado:
+# dotnet tool update --global dotnet-ef
 ```
+
+### 2) Configurar a conexão
+- Faça uma cópia do arquivo `.env.sample` em `Web.Iottu.Api.Catalog` com, e renomeie para `.env`;
+- Atualize as variáveis com as suas credenciais:
+
+```bash
 DB_USER=seu_usuario
 DB_PASSWORD=sua_senha
 ```
 
-E configure `ConnectionStrings:DefaultConnection` em `Web.Iottu.Api.Catalog/appsettings.Development.json` (host, service name, etc.). A conexão é montada em `Program.cs`.
+### 3) Criar uma nova migration
+Execute na raiz do repositório, apontando o projeto de migrations e o projeto de inicialização da API:
+
+```bash
+dotnet ef migrations add Init \
+  -p Infrastructure.Iottu.Persistence/Infrastructure.Iottu.Persistence.csproj \
+  -s Web.Iottu.Api.Catalog/Web.Iottu.Api.Catalog.csproj \
+  -c Infrastructure.Iottu.Persistence.Contexts.IottuDbContext
+```
+
+Troque `Init` pelo nome da sua alteração (ex.: `Add_StatusMoto_Seed`, `Alter_Moto_Chassi_Unique`). Os arquivos serão gerados em `Infrastructure.Iottu.Persistence/Migrations`.
+
+### 4) Aplicar migrations no seu banco Oracle
+Com as variáveis `DB_USER`/`DB_PASSWORD` configuradas e o Oracle acessível, rode:
+
+```bash
+dotnet ef database update \
+  -p Infrastructure.Iottu.Persistence/Infrastructure.Iottu.Persistence.csproj \
+  -s Web.Iottu.Api.Catalog/Web.Iottu.Api.Catalog.csproj \
+  -c Infrastructure.Iottu.Persistence.Contexts.IottuDbContext
+```
+
+Isso cria/atualiza as tabelas no schema do usuário Oracle definido em `DB_USER`.
+
+### 5) Reverter a última migration (sem aplicar no banco)
+```bash
+dotnet ef migrations remove \
+  -p Infrastructure.Iottu.Persistence/Infrastructure.Iottu.Persistence.csproj \
+  -s Web.Iottu.Api.Catalog/Web.Iottu.Api.Catalog.csproj
+```
+
+Para reverter o banco a uma migration anterior específica:
+```bash
+dotnet ef database update NomeDaMigrationAnterior \
+  -p Infrastructure.Iottu.Persistence/Infrastructure.Iottu.Persistence.csproj \
+  -s Web.Iottu.Api.Catalog/Web.Iottu.Api.Catalog.csproj \
+  -c Infrastructure.Iottu.Persistence.Contexts.IottuDbContext
+```
 
 ## ▶️ Executando a API
 Na raiz do repositório:
