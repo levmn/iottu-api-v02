@@ -1,38 +1,62 @@
 using Core.Iottu.Domain.Interfaces;
+using Core.Iottu.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Shared.Iottu.Contracts.DTOs;
+using Shared.Iottu.Contracts.DTOs.Auth;
 
-namespace Web.Iottu.Api.Catalog.Controllers;
-[ApiController]
-[Route("api/[controller]")]
-public class AuthController : ControllerBase
+namespace Web.Iottu.Api.Catalog.Controllers
 {
-    private readonly ITokenService _tokenService;
-    // ideal: injetar um serviço que verifica credenciais (ex.: IUserService)
-    public AuthController(ITokenService tokenService)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class AuthController : ControllerBase
     {
-        _tokenService = tokenService;
-    }
+        private readonly UserService _userService;
+        private readonly ITokenService _tokenService;
 
-    [HttpPost("token")]
-    [AllowAnonymous]
-    public IActionResult Token([FromBody] LoginRequest request)
-    {
-        if (request.Username == "admin" && request.Password == "password")
+        public AuthController(UserService userService, ITokenService tokenService)
         {
-            var token = _tokenService.GenerateToken(request.Username, new[] { new KeyValuePair<string, string>("role", "admin") });
-            return Ok(new AuthResponse { AccessToken = token, ExpiresAt = DateTime.UtcNow.AddMinutes(60) });
+            _userService = userService;
+            _tokenService = tokenService;
         }
 
-        return Unauthorized();
-    }
+        /// <summary>
+        /// Realiza login e retorna um token JWT válido.
+        /// </summary>
+        [HttpPost("login")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request.Username) || string.IsNullOrWhiteSpace(request.Password))
+                return BadRequest(new { message = "Usuário e senha são obrigatórios." });
 
-    [HttpGet("whoami")]
-    [Authorize]
-    public IActionResult WhoAmI()
-    {
-        var sub = User.FindFirst(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub)?.Value;
-        return Ok(new { Subject = sub, Claims = User.Claims.Select(c => new { c.Type, c.Value }) });
+            var user = await _userService.AuthenticateAsync(request.Username, request.Password);
+            if (user == null)
+                return Unauthorized(new { message = "Usuário ou senha inválidos." });
+
+            var token = _tokenService.GenerateToken(user.Username, new[]
+            {
+                new KeyValuePair<string, string>("role", user.Role ?? "user")
+            });
+
+            var response = new AuthResponse
+            {
+                AccessToken = token,
+                ExpiresAt = DateTime.UtcNow.AddMinutes(60)
+            };
+
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Retorna informações sobre o usuário autenticado.
+        /// </summary>
+        [HttpGet("whoami")]
+        [Authorize]
+        public IActionResult WhoAmI()
+        {
+            var username = User.Identity?.Name;
+            var claims = User.Claims.Select(c => new { c.Type, c.Value });
+            return Ok(new { Username = username, Claims = claims });
+        }
     }
 }

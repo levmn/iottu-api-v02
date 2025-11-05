@@ -17,7 +17,7 @@ namespace Infrastructure.Iottu.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.9")
+                .HasAnnotation("ProductVersion", "9.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             OracleModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -43,7 +43,7 @@ namespace Infrastructure.Iottu.Persistence.Migrations
 
                     b.HasIndex("PatioId");
 
-                    b.ToTable("Antenas");
+                    b.ToTable("Antenas", (string)null);
                 });
 
             modelBuilder.Entity("Core.Iottu.Domain.Entities.Moto", b =>
@@ -86,7 +86,7 @@ namespace Infrastructure.Iottu.Persistence.Migrations
                     b.HasIndex("TagId")
                         .IsUnique();
 
-                    b.ToTable("Motos");
+                    b.ToTable("Motos", (string)null);
                 });
 
             modelBuilder.Entity("Core.Iottu.Domain.Entities.Patio", b =>
@@ -116,7 +116,7 @@ namespace Infrastructure.Iottu.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Patios");
+                    b.ToTable("Patios", (string)null);
                 });
 
             modelBuilder.Entity("Core.Iottu.Domain.Entities.StatusMoto", b =>
@@ -130,7 +130,7 @@ namespace Infrastructure.Iottu.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Status");
+                    b.ToTable("Status", (string)null);
 
                     b.HasData(
                         new
@@ -180,7 +180,7 @@ namespace Infrastructure.Iottu.Persistence.Migrations
 
                     b.HasIndex("AntenaId");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("Core.Iottu.Domain.Entities.Antena", b =>

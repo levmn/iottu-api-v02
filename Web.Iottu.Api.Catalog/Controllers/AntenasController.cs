@@ -1,4 +1,5 @@
 using Core.Iottu.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Iottu.Contracts.DTOs;
 using Web.Iottu.Api.Catalog.Helpers;

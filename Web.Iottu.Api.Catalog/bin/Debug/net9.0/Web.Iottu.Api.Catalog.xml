@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Web.Iottu.Api.Catalog</name>
+    </assembly>
+    <members>
+        <member name="T:Web.Iottu.Api.Catalog.Controllers.AntenasController">
+            <summary>
+            Endpoints para gerenciamento de Antenas.
+            </summary>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.AntenasController.GetAll(System.Int32,System.Int32)">
+            <summary>
+            Lista antenas com paginação.
+            </summary>
+            <param name="page">Página (>= 1).</param>
+            <param name="pageSize">Itens por página.</param>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.AntenasController.GetById(System.Guid)">
+            <summary>
+            Obtém uma antena por id.
+            </summary>
+            <param name="id">Id da antena.</param>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.AntenasController.Create(Shared.Iottu.Contracts.DTOs.CreateAntenaDto)">
+            <summary>
+            Cria uma antena.
+            </summary>
+            <param name="dto">Dados de criação da antena.</param>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.AntenasController.Update(System.Guid,Shared.Iottu.Contracts.DTOs.UpdateAntenaDto)">
+            <summary>
+            Atualiza uma antena.
+            </summary>
+            <param name="id">Id da antena.</param>
+            <param name="dto">Dados para atualização.</param>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.AntenasController.Delete(System.Guid)">
+            <summary>
+            Remove uma antena.
+            </summary>
+            <param name="id">Id da antena.</param>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.AuthController.Login(Shared.Iottu.Contracts.DTOs.Auth.LoginRequest)">
+            <summary>
+            Realiza login e retorna um token JWT válido.
+            </summary>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.AuthController.WhoAmI">
+            <summary>
+            Retorna informações sobre o usuário autenticado.
+            </summary>
+        </member>
+        <member name="T:Web.Iottu.Api.Catalog.Controllers.MotosController">
+            <summary>
+            Endpoints para gerenciamento de Motos.
+            </summary>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.MotosController.GetAll(System.Int32,System.Int32)">
+            <summary>
+            Lista motos com paginação.
+            </summary>
+            <param name="page">Página (>= 1).</param>
+            <param name="pageSize">Itens por página.</param>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.MotosController.GetById(System.Guid)">
+            <summary>
+            Obtém uma moto por id.
+            </summary>
+            <param name="id">Id da moto.</param>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.MotosController.Create(Shared.Iottu.Contracts.DTOs.CreateMotoDto)">
+            <summary>
+            Cria uma nova moto.
+            </summary>
+            <param name="dto">Dados de criação da moto.</param>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.MotosController.Update(System.Guid,Shared.Iottu.Contracts.DTOs.UpdateMotoDto)">
+            <summary>
+            Atualiza uma moto existente.
+            </summary>
+            <param name="id">Id da moto.</param>
+            <param name="dto">Dados de atualização.</param>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.MotosController.Delete(System.Guid)">
+            <summary>
+            Remove uma moto.
+            </summary>
+            <param name="id">Id da moto.</param>
+        </member>
+        <member name="T:Web.Iottu.Api.Catalog.Controllers.PatiosController">
+            <summary>
+            Endpoints para gerenciamento de Patios.
+            </summary>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.PatiosController.GetAll(System.Int32,System.Int32)">
+            <summary>
+            Lista patios com paginação.
+            </summary>
+            <param name="page">Página (>= 1).</param>
+            <param name="pageSize">Itens por página.</param>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.PatiosController.GetById(System.Guid)">
+            <summary>
+            Obtém um patio por id.
+            </summary>
+            <param name="id">Id do patio.</param>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.PatiosController.Create(Shared.Iottu.Contracts.DTOs.CreatePatioDto)">
+            <summary>
+            Cria um novo patio.
+            </summary>
+            <param name="dto">Dados de criação do patio.</param>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.PatiosController.Update(System.Guid,Shared.Iottu.Contracts.DTOs.UpdatePatioDto)">
+            <summary>
+            Atualiza um patio existente.
+            </summary>
+            <param name="id">Id do patio.</param>
+            <param name="dto">Dados para atualização.</param>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.PatiosController.Delete(System.Guid)">
+            <summary>
+            Remove um patio.
+            </summary>
+            <param name="id">Id do patio.</param>
+        </member>
+        <member name="T:Web.Iottu.Api.Catalog.Controllers.TagsController">
+            <summary>
+            Endpoints para gerenciamento de Tags.
+            </summary>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.TagsController.GetAll(System.Int32,System.Int32)">
+            <summary>
+            Lista tags com paginação.
+            </summary>
+            <param name="page">Página (>= 1).</param>
+            <param name="pageSize">Itens por página.</param>
+            <returns>Lista paginada de tags com HATEOAS.</returns>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.TagsController.GetById(System.Guid)">
+            <summary>
+            Obtém uma tag por id.
+            </summary>
+            <param name="id">Id da tag.</param>
+            <returns>Tag com HATEOAS.</returns>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.TagsController.Create(Shared.Iottu.Contracts.DTOs.CreateTagDto)">
+            <summary>
+            Cria uma nova tag.
+            </summary>
+            <param name="dto">Dados de criação da tag.</param>
+            <returns>Tag criada com HATEOAS.</returns>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.TagsController.Update(System.Guid,Shared.Iottu.Contracts.DTOs.UpdateTagDto)">
+            <summary>
+            Atualiza uma tag.
+            </summary>
+            <param name="id">Id da tag.</param>
+            <param name="dto">Dados para atualização.</param>
+            <returns>Tag atualizada com HATEOAS.</returns>
+        </member>
+        <member name="M:Web.Iottu.Api.Catalog.Controllers.TagsController.Delete(System.Guid)">
+            <summary>
+            Remove uma tag.
+            </summary>
+            <param name="id">Id da tag.</param>
+        </member>
+    </members>
+</doc>

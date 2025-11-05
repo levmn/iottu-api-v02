@@ -1,5 +1,7 @@
 using Core.Iottu.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Text;
 
 namespace Infrastructure.Iottu.Persistence.Contexts
 {
@@ -13,13 +15,14 @@ namespace Infrastructure.Iottu.Persistence.Contexts
         public DbSet<Antena> Antenas { get; set; } = null!;
         public DbSet<StatusMoto> Status { get; set; } = null!;
         public DbSet<Patio> Patios { get; set; } = null!;
+        public DbSet<User> Users { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Moto>()
-            .HasOne(m => m.Tag)
-            .WithOne(t => t.Moto)
-            .HasForeignKey<Moto>(m => m.TagId);
+                .HasOne(m => m.Tag)
+                .WithOne(t => t.Moto)
+                .HasForeignKey<Moto>(m => m.TagId);
 
             modelBuilder.Entity<Tag>()
                 .HasOne(t => t.Antena)
@@ -51,7 +54,33 @@ namespace Infrastructure.Iottu.Persistence.Contexts
                 new StatusMoto { Id = 2, Descricao = "EM MANUTENÇAO" }
             );
 
+            // seed do usuário admin
+            var adminId = new Guid("4e9c2888-72e4-4659-86fc-494a4c214a27");
+            var adminHash = HashPassword("admin123");
+
+            modelBuilder.Entity<User>().HasData(new User
+            {
+                Id = adminId,
+                Username = "admin",
+                PasswordHash = adminHash,
+                Role = "admin",
+                IsActive = true,
+                CreatedAt = new DateTime(2025, 11, 5, 17, 29, 30, 20, DateTimeKind.Utc)
+            });
+
             base.OnModelCreating(modelBuilder);
+        }
+
+        private static string HashPassword(string password)
+        {
+            byte[] salt = Encoding.UTF8.GetBytes("IottuStaticSalt");
+            var hash = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 10000,
+                numBytesRequested: 32));
+            return hash;
         }
     }
 }

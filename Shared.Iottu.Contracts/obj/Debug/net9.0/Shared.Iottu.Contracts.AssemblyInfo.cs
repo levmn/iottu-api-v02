@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Shared.Iottu.Contracts")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+37975049530666231217f37e68ffe8e7cc1a18f0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+190793e2c02b4c2ceec35e0e6ec076bd88dff888")]
 [assembly: System.Reflection.AssemblyProductAttribute("Shared.Iottu.Contracts")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Shared.Iottu.Contracts")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,11 +1,15 @@
+using System.Text;
+using DotNetEnv;
 using Infrastructure.Iottu.Persistence.Contexts;
+using Infrastructure.Iottu.Persistence.Repositories;
 using Core.Iottu.Application.Services;
 using Core.Iottu.Domain.Interfaces;
-using Infrastructure.Iottu.Persistence.Repositories;
+using Core.Iottu.Domain.Settings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Web.Iottu.Api.Catalog.Helpers;
-using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,20 +18,14 @@ Env.Load();
 var dbUser = Environment.GetEnvironmentVariable("DB_USER");
 var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
 var baseConnection = builder.Configuration.GetConnectionString("DefaultConnection");
-
 var connectionString = $"User Id={dbUser};Password={dbPassword};{baseConnection}";
 
 builder.Services.AddDbContext<IottuDbContext>(options =>
     options.UseOracle(connectionString, o => o.MigrationsAssembly("Infrastructure.Iottu.Persistence")));
 
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
-var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
-
-builder.Services.AddScoped<IMotoService, MotoService>();
-builder.Services.AddScoped<ITagService, TagService>();
-builder.Services.AddScoped<IAntenaService, AntenaService>();
-builder.Services.AddScoped<IPatioService, PatioService>();
-builder.Services.AddScoped<ITokenService, TokenService>();
+var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>()
+    ?? throw new InvalidOperationException("Configurações JWT não encontradas");
 
 builder.Services.AddAuthentication(options =>
 {
@@ -55,6 +53,15 @@ builder.Services.AddScoped<IMotoRepository, MotoRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IAntenaRepository, AntenaRepository>();
 builder.Services.AddScoped<IPatioRepository, PatioRepository>();
+
+builder.Services.AddScoped<IMotoService, MotoService>();
+builder.Services.AddScoped<ITagService, TagService>();
+builder.Services.AddScoped<IAntenaService, AntenaService>();
+builder.Services.AddScoped<IPatioService, PatioService>();
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 builder.Services.AddControllers();
 

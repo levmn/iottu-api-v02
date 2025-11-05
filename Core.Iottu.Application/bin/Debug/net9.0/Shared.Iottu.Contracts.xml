@@ -1,0 +1,289 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Shared.Iottu.Contracts</name>
+    </assembly>
+    <members>
+        <member name="T:Shared.Iottu.Contracts.DTOs.AntenaDto">
+            <summary>
+            Representa uma antena leitora de tags.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.AntenaDto.Id">
+            <summary>
+            Identificador único da antena.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.AntenaDto.Localizacao">
+            <summary>
+            Localização descritiva da antena.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.AntenaDto.Identificador">
+            <summary>
+            Identificador legível da antena.
+            </summary>
+        </member>
+        <member name="T:Shared.Iottu.Contracts.DTOs.CreateAntenaDto">
+            <summary>
+            Payload para criação de antena.
+            </summary>
+        </member>
+        <member name="T:Shared.Iottu.Contracts.DTOs.UpdateAntenaDto">
+            <summary>
+            Payload para atualização de antena.
+            </summary>
+        </member>
+        <member name="T:Shared.Iottu.Contracts.DTOs.MotoDto">
+            <summary>
+            Representa uma moto cadastrada no sistema.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.MotoDto.Id">
+            <summary>
+            Identificador único da moto.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.MotoDto.Placa">
+            <summary>
+            Placa da moto.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.MotoDto.Chassi">
+            <summary>
+            Chassi da moto.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.MotoDto.NumeroMotor">
+            <summary>
+            Número do motor.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.MotoDto.Modelo">
+            <summary>
+            Modelo da moto.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.MotoDto.StatusId">
+            <summary>
+            Id do status atual da moto.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.MotoDto.TagId">
+            <summary>
+            Id da tag RFID associada.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.MotoDto.PatioId">
+            <summary>
+            Id do pátio onde a moto está alocada.
+            </summary>
+        </member>
+        <member name="T:Shared.Iottu.Contracts.DTOs.CreateMotoDto">
+            <summary>
+            Payload para criação de uma moto.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.CreateMotoDto.Placa">
+            <summary>
+            Placa da moto.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.CreateMotoDto.Modelo">
+            <summary>
+            Modelo da moto.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.CreateMotoDto.Chassi">
+            <summary>
+            Chassi da moto.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.CreateMotoDto.NumeroMotor">
+            <summary>
+            Número do motor.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.CreateMotoDto.StatusId">
+            <summary>
+            Id do status inicial.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.CreateMotoDto.TagId">
+            <summary>
+            Id da tag RFID associada.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.CreateMotoDto.PatioId">
+            <summary>
+            Id do pátio associado.
+            </summary>
+        </member>
+        <member name="T:Shared.Iottu.Contracts.DTOs.UpdateMotoDto">
+            <summary>
+            Payload para atualização de uma moto.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.UpdateMotoDto.Modelo">
+            <summary>
+            Modelo da moto.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.UpdateMotoDto.Chassi">
+            <summary>
+            Chassi da moto.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.UpdateMotoDto.NumeroMotor">
+            <summary>
+            Número do motor.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.UpdateMotoDto.StatusId">
+            <summary>
+            Id do status atualizado.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.UpdateMotoDto.TagId">
+            <summary>
+            Id da tag RFID associada.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.UpdateMotoDto.PatioId">
+            <summary>
+            Id do pátio associado.
+            </summary>
+        </member>
+        <member name="T:Shared.Iottu.Contracts.DTOs.PagedResponse`1">
+            <summary>
+            Envelope de resposta paginada, com metadados e links HATEOAS para navegação.
+            </summary>
+            <typeparam name="T">Tipo dos itens retornados.</typeparam>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.PagedResponse`1.Page">
+            <summary>
+            Número da página atual (>= 1).
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.PagedResponse`1.PageSize">
+            <summary>
+            Tamanho da página (itens por página, >= 1).
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.PagedResponse`1.TotalItems">
+            <summary>
+            Quantidade total de itens disponíveis no recurso.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.PagedResponse`1.TotalPages">
+            <summary>
+            Quantidade total de páginas baseadas no <see cref="P:Shared.Iottu.Contracts.DTOs.PagedResponse`1.TotalItems"/> e <see cref="P:Shared.Iottu.Contracts.DTOs.PagedResponse`1.PageSize"/>.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.PagedResponse`1.Items">
+            <summary>
+            Coleção de itens da página atual.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.PagedResponse`1.Links">
+            <summary>
+            Links HATEOAS no nível da coleção (ex.: self, next, prev).
+            </summary>
+        </member>
+        <member name="T:Shared.Iottu.Contracts.DTOs.PatioDto">
+            <summary>
+            Representa um pátio (local físico) para alocação de motos.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.PatioDto.Id">
+            <summary>
+            Identificador único do pátio.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.PatioDto.Cep">
+            <summary>
+            CEP do pátio.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.PatioDto.Numero">
+            <summary>
+            Número/endereço do pátio.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.PatioDto.Cidade">
+            <summary>
+            Cidade.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.PatioDto.Estado">
+            <summary>
+            Estado (UF).
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.PatioDto.Capacidade">
+            <summary>
+            Capacidade máxima de motos.
+            </summary>
+        </member>
+        <member name="T:Shared.Iottu.Contracts.DTOs.CreatePatioDto">
+            <summary>
+            Payload para criação de pátio.
+            </summary>
+        </member>
+        <member name="T:Shared.Iottu.Contracts.DTOs.UpdatePatioDto">
+            <summary>
+            Payload para atualização de pátio.
+            </summary>
+        </member>
+        <member name="T:Shared.Iottu.Contracts.DTOs.TagDto">
+            <summary>
+            Representa uma tag de rastreamento (RFID/Wi-Fi) associada a uma moto/antena.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.TagDto.Id">
+            <summary>
+            Identificador único da tag.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.TagDto.CodigoRFID">
+            <summary>
+            Código RFID lido pela antena.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.TagDto.SSIDWifi">
+            <summary>
+            SSID da rede Wi-Fi detectada.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.TagDto.Latitude">
+            <summary>
+            Latitude da leitura.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.TagDto.Longitude">
+            <summary>
+            Longitude da leitura.
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.TagDto.DataHora">
+            <summary>
+            Data/hora da leitura (UTC).
+            </summary>
+        </member>
+        <member name="P:Shared.Iottu.Contracts.DTOs.TagDto.AntenaId">
+            <summary>
+            Id da antena que realizou a leitura.
+            </summary>
+        </member>
+        <member name="T:Shared.Iottu.Contracts.DTOs.CreateTagDto">
+            <summary>
+            Payload para criação de uma tag.
+            </summary>
+        </member>
+        <member name="T:Shared.Iottu.Contracts.DTOs.UpdateTagDto">
+            <summary>
+            Payload para atualização de uma tag.
+            </summary>
+        </member>
+    </members>
+</doc>

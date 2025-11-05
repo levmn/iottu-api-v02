@@ -1,0 +1,14 @@
+/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/bin/Debug/net9.0/Shared.Iottu.Contracts.deps.json
+/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/bin/Debug/net9.0/Shared.Iottu.Contracts.dll
+/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/bin/Debug/net9.0/Shared.Iottu.Contracts.pdb
+/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/bin/Debug/net9.0/Shared.Iottu.Contracts.xml
+/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/obj/Debug/net9.0/Shared.Iottu.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/obj/Debug/net9.0/Shared.Iottu.Contracts.AssemblyInfoInputs.cache
+/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/obj/Debug/net9.0/Shared.Iottu.Contracts.AssemblyInfo.cs
+/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/obj/Debug/net9.0/Shared.Iottu.Contracts.csproj.CoreCompileInputs.cache
+/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/obj/Debug/net9.0/Shared.Iottu.Contracts.sourcelink.json
+/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/obj/Debug/net9.0/Shared.Iottu.Contracts.dll
+/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/obj/Debug/net9.0/refint/Shared.Iottu.Contracts.dll
+/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/obj/Debug/net9.0/Shared.Iottu.Contracts.xml
+/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/obj/Debug/net9.0/Shared.Iottu.Contracts.pdb
+/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/obj/Debug/net9.0/ref/Shared.Iottu.Contracts.dll
