@@ -8,6 +8,8 @@ namespace Web.Iottu.Api.Catalog.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json")]
+    [Tags("Autenticação")]
     public class AuthController : ControllerBase
     {
         private readonly UserService _userService;
@@ -20,10 +22,26 @@ namespace Web.Iottu.Api.Catalog.Controllers
         }
 
         /// <summary>
-        /// Realiza login e retorna um token JWT válido.
+        /// Realiza autenticação do usuário e retorna um token JWT
         /// </summary>
+        /// <param name="request">Credenciais do usuário</param>
+        /// <remarks>
+        /// Exemplo de requisição:
+        /// 
+        ///     POST /api/auth/login
+        ///     {
+        ///         "username": "admin",
+        ///         "password": "admin123"
+        ///     }
+        /// </remarks>
+        /// <response code="200">Retorna o token JWT</response>
+        /// <response code="400">Credenciais inválidas ou ausentes</response>
+        /// <response code="401">Usuário não autorizado</response>
         [HttpPost("login")]
         [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.Username) || string.IsNullOrWhiteSpace(request.Password))
