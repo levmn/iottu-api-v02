@@ -54,7 +54,31 @@ namespace Infrastructure.Iottu.Persistence.Contexts
                 new StatusMoto { Id = 2, Descricao = "EM MANUTENÇAO" }
             );
 
-            // seed do usuário admin
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.Property(u => u.Id)
+                      .HasColumnType("RAW(16)")
+                      .ValueGeneratedNever();
+
+                entity.Property(u => u.Username)
+                      .HasColumnType("NVARCHAR2(100)");
+
+                entity.Property(u => u.PasswordHash)
+                      .HasColumnType("NVARCHAR2(255)");
+
+                entity.Property(u => u.Role)
+                      .HasColumnType("NVARCHAR2(100)");
+
+
+                entity.Property(u => u.IsActive)
+                      .HasConversion<int>()
+                      .HasColumnType("NUMBER(1)");
+
+                entity.Property(u => u.CreatedAt)
+                      .HasColumnType("TIMESTAMP(7)");
+            });
+
+            // Seed admin user
             var adminId = new Guid("4e9c2888-72e4-4659-86fc-494a4c214a27");
             var adminHash = HashPassword("admin123");
 

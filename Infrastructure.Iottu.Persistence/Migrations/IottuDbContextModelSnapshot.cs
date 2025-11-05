@@ -43,7 +43,7 @@ namespace Infrastructure.Iottu.Persistence.Migrations
 
                     b.HasIndex("PatioId");
 
-                    b.ToTable("Antenas", (string)null);
+                    b.ToTable("Antenas");
                 });
 
             modelBuilder.Entity("Core.Iottu.Domain.Entities.Moto", b =>
@@ -86,7 +86,7 @@ namespace Infrastructure.Iottu.Persistence.Migrations
                     b.HasIndex("TagId")
                         .IsUnique();
 
-                    b.ToTable("Motos", (string)null);
+                    b.ToTable("Motos");
                 });
 
             modelBuilder.Entity("Core.Iottu.Domain.Entities.Patio", b =>
@@ -116,7 +116,7 @@ namespace Infrastructure.Iottu.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Patios", (string)null);
+                    b.ToTable("Patios");
                 });
 
             modelBuilder.Entity("Core.Iottu.Domain.Entities.StatusMoto", b =>
@@ -130,7 +130,7 @@ namespace Infrastructure.Iottu.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Status", (string)null);
+                    b.ToTable("Status");
 
                     b.HasData(
                         new
@@ -180,7 +180,48 @@ namespace Infrastructure.Iottu.Persistence.Migrations
 
                     b.HasIndex("AntenaId");
 
-                    b.ToTable("Tags", (string)null);
+                    b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("Core.Iottu.Domain.Entities.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("RAW(16)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TIMESTAMP(7)");
+
+                    b.Property<int>("IsActive")
+                        .HasColumnType("NUMBER(1)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("NVARCHAR2(255)");
+
+                    b.Property<string>("Role")
+                        .HasMaxLength(100)
+                        .HasColumnType("NVARCHAR2(100)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("NVARCHAR2(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("4e9c2888-72e4-4659-86fc-494a4c214a27"),
+                            CreatedAt = new DateTime(2025, 11, 5, 17, 29, 30, 20, DateTimeKind.Utc),
+                            IsActive = 1,
+                            PasswordHash = "+GYcSqYUhRzc3l7L37PD/88G96DGyXgMW8gyrkmOMIw=",
+                            Role = "admin",
+                            Username = "admin"
+                        });
                 });
 
             modelBuilder.Entity("Core.Iottu.Domain.Entities.Antena", b =>
