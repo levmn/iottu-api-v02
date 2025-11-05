@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/levimagni/.nuget/packages/": {}
+    "/home/levmn/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/levimagni/coding/fiap/iottu/Infrastructure.Iottu.Integration/Infrastructure.Iottu.Integration.csproj",
+      "projectUniqueName": "/home/levmn/Code/iottu-api-v02/Infrastructure.Iottu.Integration/Infrastructure.Iottu.Integration.csproj",
       "projectName": "Infrastructure.Iottu.Integration",
-      "projectPath": "/Users/levimagni/coding/fiap/iottu/Infrastructure.Iottu.Integration/Infrastructure.Iottu.Integration.csproj",
-      "packagesPath": "/Users/levimagni/.nuget/packages/",
-      "outputPath": "/Users/levimagni/coding/fiap/iottu/Infrastructure.Iottu.Integration/obj/",
+      "projectPath": "/home/levmn/Code/iottu-api-v02/Infrastructure.Iottu.Integration/Infrastructure.Iottu.Integration.csproj",
+      "packagesPath": "/home/levmn/.nuget/packages/",
+      "outputPath": "/home/levmn/Code/iottu-api-v02/Infrastructure.Iottu.Integration/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/levimagni/.nuget/NuGet/NuGet.Config"
+        "/home/levmn/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -51,8 +51,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj": {
-              "projectPath": "/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj"
+            "/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj": {
+              "projectPath": "/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj"
             }
           }
         }
@@ -67,7 +67,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -88,7 +88,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.306/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

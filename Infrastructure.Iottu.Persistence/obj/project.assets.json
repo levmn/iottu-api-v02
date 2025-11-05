@@ -3206,19 +3206,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/levimagni/.nuget/packages/": {}
+    "/home/levmn/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/levimagni/coding/fiap/iottu/Infrastructure.Iottu.Persistence/Infrastructure.Iottu.Persistence.csproj",
+      "projectUniqueName": "/home/levmn/Code/iottu-api-v02/Infrastructure.Iottu.Persistence/Infrastructure.Iottu.Persistence.csproj",
       "projectName": "Infrastructure.Iottu.Persistence",
-      "projectPath": "/Users/levimagni/coding/fiap/iottu/Infrastructure.Iottu.Persistence/Infrastructure.Iottu.Persistence.csproj",
-      "packagesPath": "/Users/levimagni/.nuget/packages/",
-      "outputPath": "/Users/levimagni/coding/fiap/iottu/Infrastructure.Iottu.Persistence/obj/",
+      "projectPath": "/home/levmn/Code/iottu-api-v02/Infrastructure.Iottu.Persistence/Infrastructure.Iottu.Persistence.csproj",
+      "packagesPath": "/home/levmn/.nuget/packages/",
+      "outputPath": "/home/levmn/Code/iottu-api-v02/Infrastructure.Iottu.Persistence/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/levimagni/.nuget/NuGet/NuGet.Config"
+        "/home/levmn/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -3230,8 +3230,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/Core.Iottu.Domain.csproj": {
-              "projectPath": "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/Core.Iottu.Domain.csproj"
+            "/home/levmn/Code/iottu-api-v02/Core.Iottu.Domain/Core.Iottu.Domain.csproj": {
+              "projectPath": "/home/levmn/Code/iottu-api-v02/Core.Iottu.Domain/Core.Iottu.Domain.csproj"
             }
           }
         }
@@ -3246,7 +3246,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -3287,7 +3287,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.306/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

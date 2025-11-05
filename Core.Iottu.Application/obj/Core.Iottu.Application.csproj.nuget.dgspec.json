@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Application/Core.Iottu.Application.csproj": {}
+    "/home/levmn/Code/iottu-api-v02/Core.Iottu.Application/Core.Iottu.Application.csproj": {}
   },
   "projects": {
-    "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Application/Core.Iottu.Application.csproj": {
+    "/home/levmn/Code/iottu-api-v02/Core.Iottu.Application/Core.Iottu.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Application/Core.Iottu.Application.csproj",
+        "projectUniqueName": "/home/levmn/Code/iottu-api-v02/Core.Iottu.Application/Core.Iottu.Application.csproj",
         "projectName": "Core.Iottu.Application",
-        "projectPath": "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Application/Core.Iottu.Application.csproj",
-        "packagesPath": "/Users/levimagni/.nuget/packages/",
-        "outputPath": "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Application/obj/",
+        "projectPath": "/home/levmn/Code/iottu-api-v02/Core.Iottu.Application/Core.Iottu.Application.csproj",
+        "packagesPath": "/home/levmn/.nuget/packages/",
+        "outputPath": "/home/levmn/Code/iottu-api-v02/Core.Iottu.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/levimagni/.nuget/NuGet/NuGet.Config"
+          "/home/levmn/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -26,11 +26,11 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/Core.Iottu.Domain.csproj": {
-                "projectPath": "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/Core.Iottu.Domain.csproj"
+              "/home/levmn/Code/iottu-api-v02/Core.Iottu.Domain/Core.Iottu.Domain.csproj": {
+                "projectPath": "/home/levmn/Code/iottu-api-v02/Core.Iottu.Domain/Core.Iottu.Domain.csproj"
               },
-              "/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj": {
-                "projectPath": "/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj"
+              "/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj": {
+                "projectPath": "/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj"
               }
             }
           }
@@ -45,7 +45,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -66,21 +66,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/Core.Iottu.Domain.csproj": {
+    "/home/levmn/Code/iottu-api-v02/Core.Iottu.Domain/Core.Iottu.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/Core.Iottu.Domain.csproj",
+        "projectUniqueName": "/home/levmn/Code/iottu-api-v02/Core.Iottu.Domain/Core.Iottu.Domain.csproj",
         "projectName": "Core.Iottu.Domain",
-        "projectPath": "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/Core.Iottu.Domain.csproj",
-        "packagesPath": "/Users/levimagni/.nuget/packages/",
-        "outputPath": "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Domain/obj/",
+        "projectPath": "/home/levmn/Code/iottu-api-v02/Core.Iottu.Domain/Core.Iottu.Domain.csproj",
+        "packagesPath": "/home/levmn/.nuget/packages/",
+        "outputPath": "/home/levmn/Code/iottu-api-v02/Core.Iottu.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/levimagni/.nuget/NuGet/NuGet.Config"
+          "/home/levmn/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -104,7 +104,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -125,21 +125,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj": {
+    "/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj",
+        "projectUniqueName": "/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj",
         "projectName": "Shared.Iottu.Contracts",
-        "projectPath": "/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj",
-        "packagesPath": "/Users/levimagni/.nuget/packages/",
-        "outputPath": "/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/obj/",
+        "projectPath": "/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj",
+        "packagesPath": "/home/levmn/.nuget/packages/",
+        "outputPath": "/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/levimagni/.nuget/NuGet/NuGet.Config"
+          "/home/levmn/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -163,7 +163,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -184,7 +184,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

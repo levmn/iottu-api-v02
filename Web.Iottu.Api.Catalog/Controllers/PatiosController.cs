@@ -10,6 +10,7 @@ namespace Web.Iottu.Api.Catalog.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class PatiosController : ControllerBase
     {
         private readonly IPatioService _patioService;

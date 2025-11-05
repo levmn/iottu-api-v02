@@ -20,11 +20,36 @@ var connectionString = $"User Id={dbUser};Password={dbPassword};{baseConnection}
 builder.Services.AddDbContext<IottuDbContext>(options =>
     options.UseOracle(connectionString, o => o.MigrationsAssembly("Infrastructure.Iottu.Persistence")));
 
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
+var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
+
 builder.Services.AddScoped<IMotoService, MotoService>();
 builder.Services.AddScoped<ITagService, TagService>();
 builder.Services.AddScoped<IAntenaService, AntenaService>();
 builder.Services.AddScoped<IPatioService, PatioService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidIssuer = jwtSettings.Issuer,
+        ValidateAudience = true,
+        ValidAudience = jwtSettings.Audience,
+        ValidateLifetime = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
+        ValidateIssuerSigningKey = true,
+        ClockSkew = TimeSpan.FromSeconds(30)
+    };
+});
+
+builder.Services.AddAuthorization();
 
 builder.Services.AddScoped<IMotoRepository, MotoRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
@@ -42,6 +67,19 @@ builder.Services.AddSwaggerGen(c =>
         Title = "Iottu API",
         Version = "v1",
         Description = "API RESTful para gestão de Motos Mottu"
+    });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "JWT Authorization header using the Bearer scheme."
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+        { new OpenApiSecurityScheme { Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" } }, new string[] {} }
     });
 
     var xmlFiles = new[]
@@ -71,7 +109,11 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseRouting();
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 app.Run();

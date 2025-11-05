@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Fm/nkkK2NdI=",
+  "dgSpecHash": "2BsdDZ4hVwY=",
   "success": true,
-  "projectFilePath": "/Users/levimagni/coding/fiap/iottu/Web.Iottu.Api.Tracking/Web.Iottu.Api.Tracking.csproj",
+  "projectFilePath": "/home/levmn/Code/iottu-api-v02/Web.Iottu.Api.Tracking/Web.Iottu.Api.Tracking.csproj",
   "expectedPackageFiles": [
-    "/Users/levimagni/.nuget/packages/microsoft.aspnetcore.openapi/9.0.3/microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
-    "/Users/levimagni/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+    "/home/levmn/.nuget/packages/microsoft.aspnetcore.openapi/9.0.3/microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
+    "/home/levmn/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
   ],
   "logs": []
 }

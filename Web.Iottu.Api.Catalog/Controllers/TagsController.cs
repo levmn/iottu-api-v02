@@ -10,6 +10,7 @@ namespace Web.Iottu.Api.Catalog.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class TagsController : ControllerBase
     {
         private readonly ITagService _tagService;

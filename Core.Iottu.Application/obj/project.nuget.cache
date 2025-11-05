@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5X1YBCs3v+I=",
+  "dgSpecHash": "P8TxJxIwaIw=",
   "success": true,
-  "projectFilePath": "/Users/levimagni/coding/fiap/iottu/Core.Iottu.Application/Core.Iottu.Application.csproj",
+  "projectFilePath": "/home/levmn/Code/iottu-api-v02/Core.Iottu.Application/Core.Iottu.Application.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -10,6 +10,7 @@ namespace Web.Iottu.Api.Catalog.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class MotosController : ControllerBase
     {
         private readonly IMotoService _motoService;

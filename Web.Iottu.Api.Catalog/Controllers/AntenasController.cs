@@ -10,6 +10,7 @@ namespace Web.Iottu.Api.Catalog.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class AntenasController : ControllerBase
     {
         private readonly IAntenaService _antenaService;

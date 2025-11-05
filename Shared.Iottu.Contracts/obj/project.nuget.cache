@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ypZy9US7A3o=",
+  "dgSpecHash": "aFyWL7hbnmA=",
   "success": true,
-  "projectFilePath": "/Users/levimagni/coding/fiap/iottu/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj",
+  "projectFilePath": "/home/levmn/Code/iottu-api-v02/Shared.Iottu.Contracts/Shared.Iottu.Contracts.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
