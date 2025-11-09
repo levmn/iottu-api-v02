@@ -12,7 +12,7 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace Infrastructure.Iottu.Persistence.Migrations
 {
     [DbContext(typeof(IottuDbContext))]
-    [Migration("20251109184427_Init")]
+    [Migration("20251109222313_Init")]
     partial class Init
     {
         /// <inheritdoc />

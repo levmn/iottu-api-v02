@@ -17,11 +17,11 @@ namespace Infrastructure.Iottu.Persistence.Repositories
         public async Task<IEnumerable<Antena>> GetAllAsync(int page, int pageSize)
         {
             return await _context.Antenas
+                .Include(a => a.Patio)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
         }
-
         public async Task<int> CountAsync()
         {
             return await _context.Antenas.CountAsync();
@@ -29,9 +29,10 @@ namespace Infrastructure.Iottu.Persistence.Repositories
 
         public async Task<Antena?> GetByIdAsync(Guid id)
         {
-            return await _context.Antenas.FindAsync(id);
+            return await _context.Antenas
+                .Include(a => a.Patio)
+                .FirstOrDefaultAsync(a => a.Id == id);
         }
-
         public async Task AddAsync(Antena antena)
         {
             await _context.Antenas.AddAsync(antena);
