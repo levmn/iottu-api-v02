@@ -361,6 +361,10 @@
               "target": "Package",
               "version": "[9.0.10, )"
             },
+            "Microsoft.AspNetCore.Diagnostics.HealthChecks": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.3, )"
@@ -382,6 +386,10 @@
               "version": "[9.0.0, )"
             },
             "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[9.0.10, )"
+            },
+            "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.10, )"
             },

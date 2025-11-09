@@ -107,6 +107,9 @@ builder.Services.AddSwaggerGen(c =>
     c.OperationFilter<QueryParameterOperationFilter>();
 });
 
+builder.Services.AddHealthChecks()
+    .AddDbContextCheck<Infrastructure.Iottu.Persistence.Contexts.IottuDbContext>("Database");
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -115,7 +118,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Iottu API v1");
-        c.RoutePrefix = string.Empty; // Swagger na raiz: https://localhost:5001/
+        c.RoutePrefix = string.Empty; // swagger na raiz: https://localhost:5102/
     });
 }
 

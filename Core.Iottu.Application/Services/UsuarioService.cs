@@ -21,7 +21,7 @@ namespace Core.Iottu.Application.Services
             if (existing != null)
                 throw new InvalidOperationException("Usuário já existe.");
 
-            var user = new Usuario
+            var usuario = new Usuario
             {
                 Username = dto.Username,
                 PasswordHash = HashPassword(dto.PasswordHash),
@@ -29,16 +29,16 @@ namespace Core.Iottu.Application.Services
                 IsActive = true
             };
 
-            await _repository.AddAsync(user);
+            await _repository.AddAsync(usuario);
 
             return new UsuarioDto
             {
-                Id = user.Id,
-                Username = user.Username,
-                PasswordHash = user.PasswordHash,
-                Role = user.Role,
-                IsActive = user.IsActive,
-                CreatedAt = user.CreatedAt
+                Id = usuario.Id,
+                Username = usuario.Username,
+                PasswordHash = usuario.PasswordHash,
+                Role = usuario.Role,
+                IsActive = usuario.IsActive,
+                CreatedAt = usuario.CreatedAt
             };
         }
 
@@ -60,15 +60,15 @@ namespace Core.Iottu.Application.Services
 
         public async Task<UsuarioDto?> GetByIdAsync(Guid id)
         {
-            var user = await _repository.GetByIdAsync(id);
-            return user == null ? null : new UsuarioDto
+            var usuario = await _repository.GetByIdAsync(id);
+            return usuario == null ? null : new UsuarioDto
             {
-                Id = user.Id,
-                Username = user.Username,
-                PasswordHash = user.PasswordHash,
-                Role = user.Role,
-                IsActive = user.IsActive,
-                CreatedAt = user.CreatedAt
+                Id = usuario.Id,
+                Username = usuario.Username,
+                PasswordHash = usuario.PasswordHash,
+                Role = usuario.Role,
+                IsActive = usuario.IsActive,
+                CreatedAt = usuario.CreatedAt
             };
         }
 
@@ -79,12 +79,12 @@ namespace Core.Iottu.Application.Services
 
         public async Task<Usuario?> AuthenticateAsync(string username, string password)
         {
-            var user = await _repository.GetByUsernameAsync(username);
-            if (user == null || !user.IsActive)
+            var usuario = await _repository.GetByUsernameAsync(username);
+            if (usuario == null || !usuario.IsActive)
                 return null;
 
             var hashed = HashPassword(password);
-            return hashed == user.PasswordHash ? user : null;
+            return hashed == usuario.PasswordHash ? usuario : null;
         }
 
         private static string HashPassword(string password)

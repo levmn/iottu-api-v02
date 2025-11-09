@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BYHw5spRJhg=",
+  "dgSpecHash": "EQs2oWpxCCA=",
   "success": true,
   "projectFilePath": "/home/levmn/Code/iottu-api-v02/tests/Core.Iottu.Api.IntegrationTests/Core.Iottu.Api.IntegrationTests.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,7 @@
     "/home/levmn/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/9.0.10/microsoft.aspnetcore.cryptography.keyderivation.9.0.10.nupkg.sha512",
     "/home/levmn/.nuget/packages/microsoft.aspnetcore.dataprotection/2.3.0/microsoft.aspnetcore.dataprotection.2.3.0.nupkg.sha512",
     "/home/levmn/.nuget/packages/microsoft.aspnetcore.dataprotection.abstractions/2.3.0/microsoft.aspnetcore.dataprotection.abstractions.2.3.0.nupkg.sha512",
+    "/home/levmn/.nuget/packages/microsoft.aspnetcore.diagnostics.healthchecks/2.2.0/microsoft.aspnetcore.diagnostics.healthchecks.2.2.0.nupkg.sha512",
     "/home/levmn/.nuget/packages/microsoft.aspnetcore.hosting.abstractions/2.3.0/microsoft.aspnetcore.hosting.abstractions.2.3.0.nupkg.sha512",
     "/home/levmn/.nuget/packages/microsoft.aspnetcore.hosting.server.abstractions/2.3.0/microsoft.aspnetcore.hosting.server.abstractions.2.3.0.nupkg.sha512",
     "/home/levmn/.nuget/packages/microsoft.aspnetcore.http/2.3.0/microsoft.aspnetcore.http.2.3.0.nupkg.sha512",
@@ -52,6 +53,9 @@
     "/home/levmn/.nuget/packages/microsoft.extensions.dependencymodel/9.0.10/microsoft.extensions.dependencymodel.9.0.10.nupkg.sha512",
     "/home/levmn/.nuget/packages/microsoft.extensions.diagnostics/9.0.10/microsoft.extensions.diagnostics.9.0.10.nupkg.sha512",
     "/home/levmn/.nuget/packages/microsoft.extensions.diagnostics.abstractions/9.0.10/microsoft.extensions.diagnostics.abstractions.9.0.10.nupkg.sha512",
+    "/home/levmn/.nuget/packages/microsoft.extensions.diagnostics.healthchecks/9.0.10/microsoft.extensions.diagnostics.healthchecks.9.0.10.nupkg.sha512",
+    "/home/levmn/.nuget/packages/microsoft.extensions.diagnostics.healthchecks.abstractions/9.0.10/microsoft.extensions.diagnostics.healthchecks.abstractions.9.0.10.nupkg.sha512",
+    "/home/levmn/.nuget/packages/microsoft.extensions.diagnostics.healthchecks.entityframeworkcore/9.0.10/microsoft.extensions.diagnostics.healthchecks.entityframeworkcore.9.0.10.nupkg.sha512",
     "/home/levmn/.nuget/packages/microsoft.extensions.fileproviders.abstractions/9.0.10/microsoft.extensions.fileproviders.abstractions.9.0.10.nupkg.sha512",
     "/home/levmn/.nuget/packages/microsoft.extensions.fileproviders.physical/9.0.10/microsoft.extensions.fileproviders.physical.9.0.10.nupkg.sha512",
     "/home/levmn/.nuget/packages/microsoft.extensions.filesystemglobbing/9.0.10/microsoft.extensions.filesystemglobbing.9.0.10.nupkg.sha512",
