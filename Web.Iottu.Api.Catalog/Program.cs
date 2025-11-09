@@ -15,13 +15,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 Env.Load();
 
-var dbUser = Environment.GetEnvironmentVariable("DB_USER");
-var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
-var baseConnection = builder.Configuration.GetConnectionString("DefaultConnection");
-var connectionString = $"User Id={dbUser};Password={dbPassword};{baseConnection}";
+if (!builder.Environment.IsEnvironment("Testing"))
+{
+    var dbUser = Environment.GetEnvironmentVariable("DB_USER");
+    var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+    var baseConnection = builder.Configuration.GetConnectionString("DefaultConnection");
+    var connectionString = $"User Id={dbUser};Password={dbPassword};{baseConnection}";
 
-builder.Services.AddDbContext<IottuDbContext>(options =>
-    options.UseOracle(connectionString, o => o.MigrationsAssembly("Infrastructure.Iottu.Persistence")));
+    builder.Services.AddDbContext<IottuDbContext>(options =>
+        options.UseOracle(connectionString, o => o.MigrationsAssembly("Infrastructure.Iottu.Persistence")));
+}
 
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
 var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>()
@@ -59,8 +62,8 @@ builder.Services.AddScoped<ITagService, TagService>();
 builder.Services.AddScoped<IAntenaService, AntenaService>();
 builder.Services.AddScoped<IPatioService, PatioService>();
 
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
 builder.Services.AddControllers();
@@ -124,3 +127,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.Run();
+
+public partial class Program { }

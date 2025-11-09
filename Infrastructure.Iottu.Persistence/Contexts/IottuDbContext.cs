@@ -15,7 +15,7 @@ namespace Infrastructure.Iottu.Persistence.Contexts
         public DbSet<Antena> Antenas { get; set; } = null!;
         public DbSet<StatusMoto> Status { get; set; } = null!;
         public DbSet<Patio> Patios { get; set; } = null!;
-        public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Usuario> Usuarios { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -54,7 +54,7 @@ namespace Infrastructure.Iottu.Persistence.Contexts
                 new StatusMoto { Id = 2, Descricao = "EM MANUTENÇAO" }
             );
 
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.Property(u => u.Id)
                       .HasColumnType("RAW(16)")
@@ -78,11 +78,11 @@ namespace Infrastructure.Iottu.Persistence.Contexts
                       .HasColumnType("TIMESTAMP(7)");
             });
 
-            // Seed admin user
+            // seed do usuario admin
             var adminId = new Guid("4e9c2888-72e4-4659-86fc-494a4c214a27");
             var adminHash = HashPassword("admin123");
 
-            modelBuilder.Entity<User>().HasData(new User
+            modelBuilder.Entity<Usuario>().HasData(new Usuario
             {
                 Id = adminId,
                 Username = "admin",

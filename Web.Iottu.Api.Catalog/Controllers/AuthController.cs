@@ -12,12 +12,12 @@ namespace Web.Iottu.Api.Catalog.Controllers
     [Tags("Autenticação")]
     public class AuthController : ControllerBase
     {
-        private readonly UserService _userService;
+        private readonly IUsuarioService _usuarioService;
         private readonly ITokenService _tokenService;
 
-        public AuthController(UserService userService, ITokenService tokenService)
+        public AuthController(IUsuarioService usuarioService, ITokenService tokenService)
         {
-            _userService = userService;
+            _usuarioService = usuarioService;
             _tokenService = tokenService;
         }
 
@@ -47,7 +47,7 @@ namespace Web.Iottu.Api.Catalog.Controllers
             if (string.IsNullOrWhiteSpace(request.Username) || string.IsNullOrWhiteSpace(request.Password))
                 return BadRequest(new { message = "Usuário e senha são obrigatórios." });
 
-            var user = await _userService.AuthenticateAsync(request.Username, request.Password);
+            var user = await _usuarioService.AuthenticateAsync(request.Username, request.Password);
             if (user == null)
                 return Unauthorized(new { message = "Usuário ou senha inválidos." });
 

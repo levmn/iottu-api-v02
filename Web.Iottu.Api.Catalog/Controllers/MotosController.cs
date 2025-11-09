@@ -47,7 +47,7 @@ namespace Web.Iottu.Api.Catalog.Controllers
                 ["delete"] = $"/api/motos/{m.Id}"
             }));
 
-            var envelope = new Shared.Iottu.Contracts.DTOs.PagedResponse<object>
+            var envelope = new PagedResponse<object>
             {
                 Page = page,
                 PageSize = pageSize,

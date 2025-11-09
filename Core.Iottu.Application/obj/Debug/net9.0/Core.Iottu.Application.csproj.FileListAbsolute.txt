@@ -1,0 +1,9 @@
+/home/levmn/Code/iottu-api-v02/tests/Core.Iottu.Application/obj/Debug/net9.0/Core.Iottu.Application.csproj.AssemblyReference.cache
+/home/levmn/Code/iottu-api-v02/tests/Core.Iottu.Application/obj/Debug/net9.0/Core.Iottu.Application.GeneratedMSBuildEditorConfig.editorconfig
+/home/levmn/Code/iottu-api-v02/tests/Core.Iottu.Application/obj/Debug/net9.0/Core.Iottu.Application.AssemblyInfoInputs.cache
+/home/levmn/Code/iottu-api-v02/tests/Core.Iottu.Application/obj/Debug/net9.0/Core.Iottu.Application.AssemblyInfo.cs
+/home/levmn/Code/iottu-api-v02/tests/Core.Iottu.Application/obj/Debug/net9.0/Core.Iottu.Application.csproj.CoreCompileInputs.cache
+/home/levmn/Code/iottu-api-v02/tests/Core.Iottu.Application/obj/Debug/net9.0/Core.Iottu.Application.sourcelink.json
+/home/levmn/Code/iottu-api-v02/tests/Core.Iottu.Application/obj/Debug/net9.0/Core.Iottu.Application.dll
+/home/levmn/Code/iottu-api-v02/tests/Core.Iottu.Application/obj/Debug/net9.0/refint/Core.Iottu.Application.dll
+/home/levmn/Code/iottu-api-v02/tests/Core.Iottu.Application/obj/Debug/net9.0/Core.Iottu.Application.pdb

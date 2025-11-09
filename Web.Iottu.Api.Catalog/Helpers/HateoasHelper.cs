@@ -14,13 +14,15 @@ namespace Web.Iottu.Api.Catalog.Helpers
 
         public static object AddLinks<T>(T entity, Dictionary<string, string> links)
         {
-            var dict = new Dictionary<string, object?>
-            {
-                ["data"] = entity,
-                ["_links"] = links.Select(l => new { href = l.Value, rel = l.Key, method = GetHttpMethod(l.Key) }).ToArray()
-            };
+            var props = entity!.GetType()
+                .GetProperties()
+                .ToDictionary(p => p.Name, p => p.GetValue(entity));
 
-            return dict;
+            props["_links"] = links
+                .Select(l => new { href = l.Value, rel = l.Key, method = GetHttpMethod(l.Key) })
+                .ToArray();
+
+            return props;
         }
 
         public static IEnumerable<object> CollectionLinks(string basePath, int page, int pageSize, int totalPages)

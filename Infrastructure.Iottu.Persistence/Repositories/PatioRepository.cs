@@ -34,8 +34,12 @@ namespace Infrastructure.Iottu.Persistence.Repositories
 
         public async Task AddAsync(Patio patio)
         {
+            Console.WriteLine($"[DEBUG] Salvando patio: Cep = '{patio.Cep}'");
             await _context.Patios.AddAsync(patio);
             await _context.SaveChangesAsync();
+
+            var check = await _context.Patios.FindAsync(patio.Id);
+            Console.WriteLine($"[DEBUG] Patio salvo: Cep = '{check?.Cep}'");
         }
 
         public async Task UpdateAsync(Patio patio)
