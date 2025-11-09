@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Infrastructure.Iottu.Integration")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Core.Iottu.Application.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+374146813783f03eabac6dd98ad2d45c35de0200")]
-[assembly: System.Reflection.AssemblyProductAttribute("Infrastructure.Iottu.Integration")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Infrastructure.Iottu.Integration")]
+[assembly: System.Reflection.AssemblyProductAttribute("Core.Iottu.Application.Tests")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Core.Iottu.Application.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Gerado pela classe WriteCodeFragment do MSBuild.

@@ -190,10 +190,26 @@ Observações:
 - Cada item possui HATEOAS (`self`, `update`, `delete`).
 
 ## 🧪 Testes
-Para executar os testes (exemplo, ajuste ao seu projeto de testes):
+A solução possui cobertura de testes unitários e de integração com `xUnit`.
+
+### Testes Unitários 
+Localizados em `tests/Core.Iottu.Application.Tests`:
+- Validam a lógica de negócio dos serviços (MotoService, UsuarioService etc).
+- Utilizam mocks de repositórios.
+
+### Testes de Integração
+Localizados em `tests/Core.Iottu.Api.IntegrationTests`:
+- Usam `WebApplicationFactory<Program>` e banco InMemory.
+- Verificam autenticação, CRUD e endpoints da API real.
+
+
+### Execução dos testes
 
 ```bash
 dotnet test
 ```
 
-Se houver múltiplos projetos de teste, utilize `--project caminho/do/projeto.csproj`.
+Para rodar um projeto específico:
+```bash
+dotnet test tests/Core.Iottu.Api.IntegrationTests/Core.Iottu.Api.IntegrationTests.csproj
+```
