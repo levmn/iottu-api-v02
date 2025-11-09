@@ -89,13 +89,6 @@ builder.Services.AddVersionedApiExplorer(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "Iottu API",
-        Version = "v1",
-        Description = "API RESTful para gestão de Motos Mottu"
-    });
-
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -123,6 +116,8 @@ builder.Services.AddSwaggerGen(c =>
     c.SchemaFilter<ExamplesSchemaFilter>();
     c.OperationFilter<QueryParameterOperationFilter>();
 });
+
+builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
 builder.Services.AddHealthChecks()
     .AddDbContextCheck<Infrastructure.Iottu.Persistence.Contexts.IottuDbContext>("Database");

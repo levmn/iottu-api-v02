@@ -1,6 +1,6 @@
 # 🛜 Iottu
 
-**Iottu** é um sistema para localização e controle de motos, inspirado em um desafio real prposto pela Mottu. Esta versão foi reestruturada seguindo princípios SOLID, arquitetura em camadas e boas práticas REST, com documentação via Swagger/OpenAPI, e cobertura de testes unitários e de integração.
+**Iottu** é um sistema para localização e controle de motos, inspirado em um desafio real proposto pela Mottu. Esta versão foi reestruturada seguindo princípios SOLID, arquitetura em camadas e boas práticas REST, com documentação via Swagger/OpenAPI, e cobertura de testes unitários e de integração.
 
 ## 👥 Integrantes
 - [RM558948] [Allan Brito Moreira](https://github.com/Allanbm100)

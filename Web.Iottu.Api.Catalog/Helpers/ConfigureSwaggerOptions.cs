@@ -22,7 +22,7 @@ namespace Web.Iottu.Api.Catalog.Helpers
                 {
                     Title = $"Iottu API {description.ApiVersion}",
                     Version = description.ApiVersion.ToString(),
-                    Description = "API RESTful para gestão de Motos Mottu, com versionamento e JWT"
+                    Description = "API RESTful para gestão de motos armazenadas em pátios Mottu, com versionamento e autenticação JWT.",
                 });
             }
         }
