@@ -183,7 +183,7 @@ namespace Infrastructure.Iottu.Persistence.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("Core.Iottu.Domain.Entities.User", b =>
+            modelBuilder.Entity("Core.Iottu.Domain.Entities.Usuario", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("RAW(16)");
@@ -210,7 +210,7 @@ namespace Infrastructure.Iottu.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Usuarios");
 
                     b.HasData(
                         new

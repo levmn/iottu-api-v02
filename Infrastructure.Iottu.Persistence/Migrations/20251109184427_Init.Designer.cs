@@ -12,8 +12,8 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace Infrastructure.Iottu.Persistence.Migrations
 {
     [DbContext(typeof(IottuDbContext))]
-    [Migration("20251105175900_AddUserEntity")]
-    partial class AddUserEntity
+    [Migration("20251109184427_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -186,7 +186,7 @@ namespace Infrastructure.Iottu.Persistence.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("Core.Iottu.Domain.Entities.User", b =>
+            modelBuilder.Entity("Core.Iottu.Domain.Entities.Usuario", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("RAW(16)");
@@ -213,7 +213,7 @@ namespace Infrastructure.Iottu.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Usuarios");
 
                     b.HasData(
                         new
