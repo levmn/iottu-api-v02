@@ -17,7 +17,7 @@ public class MotosControllerTests : IntegrationTestBase
     [Fact]
     public async Task GetAllMotos_ShouldReturnOk()
     {
-        var response = await _client.GetAsync("/api/motos?page=1&pageSize=5");
+        var response = await _client.GetAsync("/api/v1/motos?page=1&pageSize=5");
         response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
@@ -26,7 +26,7 @@ public class MotosControllerTests : IntegrationTestBase
     {
         var dto = new CreateMotoDto();
 
-        var response = await _client.PostAsJsonAsync("/api/motos", dto);
+        var response = await _client.PostAsJsonAsync("/api/v1/motos", dto);
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
     }
 }

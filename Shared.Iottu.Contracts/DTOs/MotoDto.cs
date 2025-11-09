@@ -11,18 +11,22 @@ namespace Shared.Iottu.Contracts.DTOs
         /// Identificador único da moto.
         /// </summary>
         public Guid Id { get; set; }
+
         /// <summary>
         /// Placa da moto.
         /// </summary>
         public string Placa { get; set; } = string.Empty;
+
         /// <summary>
         /// Chassi da moto.
         /// </summary>
         public string Chassi { get; set; } = string.Empty;
+
         /// <summary>
         /// Número do motor.
         /// </summary>
         public string NumeroMotor { get; set; } = string.Empty;
+
         /// <summary>
         /// Modelo da moto.
         /// </summary>
@@ -58,31 +62,37 @@ namespace Shared.Iottu.Contracts.DTOs
         [Required(ErrorMessage = "A placa é obrigatória.")]
         [StringLength(10)]
         public string Placa { get; set; } = string.Empty;
+
         /// <summary>
         /// Modelo da moto.
         /// </summary>
         [Required(ErrorMessage = "O modelo é obrigatório.")]
         public string Modelo { get; set; } = string.Empty;
+
         /// <summary>
         /// Chassi da moto.
         /// </summary>
         [Required(ErrorMessage = "O chassi é obrigatório.")]
         public string Chassi { get; set; } = string.Empty;
+
         /// <summary>
         /// Número do motor.
         /// </summary>
         [Required(ErrorMessage = "O número do motor é obrigatório.")]
         public string NumeroMotor { get; set; } = string.Empty;
+
         /// <summary>
         /// Id do status inicial.
         /// </summary>
         [Range(1, int.MaxValue, ErrorMessage = "StatusId deve ser maior que zero.")]
         public int StatusId { get; set; }
+
         /// <summary>
         /// Id da tag RFID associada.
         /// </summary>
         [Required(ErrorMessage = "TagId é obrigatório.")]
         public Guid TagId { get; set; }
+
         /// <summary>
         /// Id do pátio associado.
         /// </summary>
@@ -96,28 +106,46 @@ namespace Shared.Iottu.Contracts.DTOs
     public class UpdateMotoDto
     {
         /// <summary>
+        /// Placa da moto.
+        /// </summary>
+        [Required(ErrorMessage = "A placa é obrigatória.")]
+        [StringLength(10)]
+        public string Placa { get; set; } = string.Empty;
+
+        /// <summary>
         /// Modelo da moto.
         /// </summary>
+        [Required(ErrorMessage = "O modelo é obrigatório.")]
         public string Modelo { get; set; } = string.Empty;
+
         /// <summary>
         /// Chassi da moto.
         /// </summary>
+        [Required(ErrorMessage = "O chassi é obrigatório.")]
         public string Chassi { get; set; } = string.Empty;
+
         /// <summary>
         /// Número do motor.
         /// </summary>
+        [Required(ErrorMessage = "O número do motor é obrigatório.")]
         public string NumeroMotor { get; set; } = string.Empty;
+
         /// <summary>
-        /// Id do status atualizado.
+        /// Id do status inicial.
         /// </summary>
+        [Range(1, int.MaxValue, ErrorMessage = "StatusId deve ser maior que zero.")]
         public int StatusId { get; set; }
+
         /// <summary>
         /// Id da tag RFID associada.
         /// </summary>
+        [Required(ErrorMessage = "TagId é obrigatório.")]
         public Guid TagId { get; set; }
+
         /// <summary>
         /// Id do pátio associado.
         /// </summary>
+        [Required(ErrorMessage = "PatioId é obrigatório.")]
         public Guid PatioId { get; set; }
     }
 }

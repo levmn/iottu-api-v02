@@ -20,7 +20,7 @@ public class AuthControllerTests : IntegrationTestBase
             Password = "admin123"
         };
 
-        var response = await TestClient.PostAsJsonAsync("/api/auth/login", loginRequest);
+        var response = await TestClient.PostAsJsonAsync("/api/v1/auth/login", loginRequest);
         var authResponse = await response.Content.ReadFromJsonAsync<AuthResponse>();
 
         response.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);

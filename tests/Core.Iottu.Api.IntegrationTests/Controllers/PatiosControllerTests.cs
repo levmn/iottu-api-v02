@@ -28,7 +28,7 @@ public class PatiosControllerTests : IntegrationTestBase
             Capacidade = 20
         };
 
-        var response = await _client.PostAsJsonAsync("/api/patios", dto);
+        var response = await _client.PostAsJsonAsync("/api/v1/patios", dto);
 
         response.StatusCode.Should().Be(HttpStatusCode.Created);
         var result = await response.Content.ReadFromJsonAsync<PatioDto>();
@@ -39,7 +39,7 @@ public class PatiosControllerTests : IntegrationTestBase
     [Fact]
     public async Task GetAllPatios_ShouldReturnOk()
     {
-        var response = await _client.GetAsync("/api/patios?page=1&pageSize=10");
+        var response = await _client.GetAsync("/api/v1/patios?page=1&pageSize=10");
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
         var result = await response.Content.ReadAsStringAsync();

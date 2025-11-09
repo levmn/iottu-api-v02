@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Shared.Iottu.Contracts.DTOs
 {
     /// <summary>
@@ -24,7 +26,12 @@ namespace Shared.Iottu.Contracts.DTOs
     /// </summary>
     public class CreateAntenaDto
     {
+        [Required(ErrorMessage = "A localização é obrigatória.")]
+        [StringLength(100, ErrorMessage = "A localização deve ter no máximo 100 caracteres.")]
         public string Localizacao { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "O identificador é obrigatório.")]
+        [StringLength(50, ErrorMessage = "O identificador deve ter no máximo 50 caracteres.")]
         public string Identificador { get; set; } = string.Empty;
     }
 
@@ -33,7 +40,12 @@ namespace Shared.Iottu.Contracts.DTOs
     /// </summary>
     public class UpdateAntenaDto
     {
+        [Required(ErrorMessage = "A localização é obrigatória.")]
+        [StringLength(100, ErrorMessage = "A localização deve ter no máximo 100 caracteres.")]
         public string Localizacao { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "O identificador é obrigatório.")]
+        [StringLength(50, ErrorMessage = "O identificador deve ter no máximo 50 caracteres.")]
         public string Identificador { get; set; } = string.Empty;
     }
 }
