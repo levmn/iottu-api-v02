@@ -1,6 +1,6 @@
 # 🛜 Iottu
 
-**Iottu** é um sistema para localização e controle de motos, inspirado em um desafio real da Mottu. Esta versão foi reestruturada seguindo princípios SOLID, arquitetura em camadas e boas práticas REST, com documentação via Swagger/OpenAPI.
+**Iottu** é um sistema para localização e controle de motos, inspirado em um desafio real prposto pela Mottu. Esta versão foi reestruturada seguindo princípios SOLID, arquitetura em camadas e boas práticas REST, com documentação via Swagger/OpenAPI, e cobertura de testes unitários e de integração.
 
 ## 👥 Integrantes
 - [RM558948] [Allan Brito Moreira](https://github.com/Allanbm100)
@@ -10,9 +10,9 @@
 ## 🧱 Arquitetura e Justificativa
 A solução adota uma arquitetura em camadas com separação clara de responsabilidades, orientada a SOLID:
 
+- `Core.Iottu.Application`: Serviços de aplicação (casos de uso). Convertem entidades em DTOs, orquestram repositórios e garantem regras de aplicação. Depende de abstrações do domínio (DIP) e mantém baixo acoplamento (ISP).
 - `Core.Iottu.Domain`: Entidades e contratos (Interfaces de Repositórios). Mantém o domínio isolado de detalhes de implementação.
 - `Infrastructure.Iottu.Persistence`: Persistência com EF Core (Oracle), Migrations e Repositórios. Implementa interfaces do domínio (DIP) e segue SRP para cada repositório.
-- `Core.Iottu.Application`: Serviços de aplicação (casos de uso). Convertem entidades em DTOs, orquestram repositórios e garantem regras de aplicação. Depende de abstrações do domínio (DIP) e mantém baixo acoplamento (ISP).
 - `Shared.Iottu.Contracts`: DTOs e contratos compartilhados, com comentários XML para documentação automatizada do Swagger.
 - `Web.Iottu.Api.Catalog`: ASP.NET Core Web API. Expõe endpoints RESTful, versão, documentação e HATEOAS. Controladores finos (Controller → Service → Repository), cumprindo SRP.
 
@@ -22,15 +22,17 @@ Principais práticas adotadas:
 - Swagger/OpenAPI com XML comments (descrições de endpoints, parâmetros e modelos) + exemplos.
 
 ### Entidades Principais
-- Moto, Tag, Antena, Patio
+- Antena, Moto, Patio, StatusMoto, Tag, Usuario
 
 ## 🗂️ Estrutura do Projeto (resumo)
+- `Core.Iottu.Application/Services`: serviços (`MotoService`, `TagService`, ...)
 - `Core.Iottu.Domain/Entities`: modelos de domínio (Moto, Tag, Antena, Patio)
 - `Core.Iottu.Domain/Interfaces`: contratos de repositórios (`IMotoRepository`, etc.)
 - `Infrastructure.Iottu.Persistence/Contexts`: `IottuDbContext`
 - `Infrastructure.Iottu.Persistence/Repositories`: repositórios EF Core
-- `Core.Iottu.Application/Services`: serviços (`MotoService`, `TagService`, ...)
 - `Shared.Iottu.Contracts/DTOs`: DTOs (inclui `PagedResponse<T>` para paginação)
+- `tests/Core.Iottu.Api.IntegrationTests`: testes de integração
+- `tests/Core.Iottu.Application.Tests`: testes unitários
 - `Web.Iottu.Api.Catalog/Controllers`: controladores REST (Antenas, Motos, Patios, Tags)
 - `Web.Iottu.Api.Catalog/Helpers`: `HateoasHelper`, filtros do Swagger
 
@@ -120,7 +122,7 @@ A API habilita Swagger com:
 - Parâmetros de paginação documentados via `QueryParameterOperationFilter`
 
 ## 📌 Endpoints Principais (CRUD + Paginação + HATEOAS)
-Recursos: `motos`, `tags`, `antenas`, `patios`.
+Recursos: `antenas`, `motos`, `patios`, `tags`, `usuarios`.
 
 ### Listagem paginada
 ```http
