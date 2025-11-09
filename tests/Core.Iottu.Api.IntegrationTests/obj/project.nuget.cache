@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "EQs2oWpxCCA=",
+  "dgSpecHash": "spOUx3N3H5s=",
   "success": true,
   "projectFilePath": "/home/levmn/Code/iottu-api-v02/tests/Core.Iottu.Api.IntegrationTests/Core.Iottu.Api.IntegrationTests.csproj",
   "expectedPackageFiles": [
@@ -28,6 +28,8 @@
     "/home/levmn/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/9.0.10/microsoft.aspnetcore.identity.entityframeworkcore.9.0.10.nupkg.sha512",
     "/home/levmn/.nuget/packages/microsoft.aspnetcore.metadata/9.0.10/microsoft.aspnetcore.metadata.9.0.10.nupkg.sha512",
     "/home/levmn/.nuget/packages/microsoft.aspnetcore.mvc.testing/9.0.10/microsoft.aspnetcore.mvc.testing.9.0.10.nupkg.sha512",
+    "/home/levmn/.nuget/packages/microsoft.aspnetcore.mvc.versioning/5.1.0/microsoft.aspnetcore.mvc.versioning.5.1.0.nupkg.sha512",
+    "/home/levmn/.nuget/packages/microsoft.aspnetcore.mvc.versioning.apiexplorer/5.1.0/microsoft.aspnetcore.mvc.versioning.apiexplorer.5.1.0.nupkg.sha512",
     "/home/levmn/.nuget/packages/microsoft.aspnetcore.openapi/9.0.3/microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
     "/home/levmn/.nuget/packages/microsoft.aspnetcore.testhost/9.0.10/microsoft.aspnetcore.testhost.9.0.10.nupkg.sha512",
     "/home/levmn/.nuget/packages/microsoft.aspnetcore.webutilities/2.3.0/microsoft.aspnetcore.webutilities.2.3.0.nupkg.sha512",

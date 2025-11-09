@@ -7,7 +7,8 @@ using Shared.Iottu.Contracts.DTOs.Auth;
 namespace Web.Iottu.Api.Catalog.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [Produces("application/json")]
     [Tags("Autenticação")]
     public class AuthController : ControllerBase

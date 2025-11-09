@@ -10,7 +10,8 @@ namespace Web.Iottu.Api.Catalog.Controllers
     /// Endpoints para gerenciamento de Patios.
     /// </summary>
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [Authorize]
     public class PatiosController : ControllerBase
     {

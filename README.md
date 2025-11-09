@@ -126,7 +126,7 @@ Recursos: `antenas`, `motos`, `patios`, `tags`, `usuarios`.
 
 ### Listagem paginada
 ```http
-GET /api/motos?page=1&pageSize=10
+GET /api/v1/motos?page=1&pageSize=10
 ```
 Resposta (exemplo):
 ```json
@@ -135,22 +135,22 @@ Resposta (exemplo):
   "pageSize": 10,
   "totalItems": 42,
   "totalPages": 5,
-  "items": [ { "data": { "id": "...", "placa": "...", "modelo": "..." }, "_links": [ { "href": "/api/motos/{id}", "rel": "self", "method": "GET" } ] } ],
+  "items": [ { "data": { "id": "...", "placa": "...", "modelo": "..." }, "_links": [ { "href": "/api/v1/motos/{id}", "rel": "self", "method": "GET" } ] } ],
   "links": [
-    { "href": "/api/motos?page=1&pageSize=10", "rel": "self", "method": "GET" },
-    { "href": "/api/motos?page=2&pageSize=10", "rel": "next", "method": "GET" }
+    { "href": "/api/v1/motos?page=1&pageSize=10", "rel": "self", "method": "GET" },
+    { "href": "/api/v1/motos?page=2&pageSize=10", "rel": "next", "method": "GET" }
   ]
 }
 ```
 
 ### Buscar por id
 ```http
-GET /api/motos/{id}
+GET /api/v1/motos/{id}
 ```
 
 ### Criar
 ```http
-POST /api/motos
+POST /api/v1/motos
 Content-Type: application/json
 
 {
@@ -166,7 +166,7 @@ Content-Type: application/json
 
 ### Atualizar
 ```http
-PUT /api/motos/{id}
+PUT /api/v1/motos/{id}
 Content-Type: application/json
 
 {
@@ -181,13 +181,55 @@ Content-Type: application/json
 
 ### Remover
 ```http
-DELETE /api/motos/{id}
+DELETE /api/v1/motos/{id}
 ```
 
 Observações:
 - Paginação exige `page >= 1` e `pageSize >= 1`. Valores inválidos retornam 400.
 - Respostas de lista retornam envelope `PagedResponse<T>` com metadados e HATEOAS de coleção (`self`, `prev`, `next`).
 - Cada item possui HATEOAS (`self`, `update`, `delete`).
+- A aplicação utiliza versionamento via URL, os endpoints seguem o padrão: `/api/{version}/motos`, `/api/{version}/patios`.
+
+## 🔐 Segurança: Autenticação e Autorização (JWT)
+A API utiliza JWT (JSON Web Token) para autenticação e controle de acesso.
+
+### Fluxo de Autenticação
+1. Realize uma requisição `POST` para `/api/v1/auth/login`:
+```json
+{
+  "username": "admin",
+  "password": "admin123"
+}
+```
+
+2. Receba o token JWT na resposta:
+```json
+{
+  "accessToken": "<jwt_token>",
+  "expiresAt": "2025-11-08T12:00:00Z"
+}
+```
+
+3. Use o token nas chamadas autenticadas:
+```json
+Authorization: Bearer <jwt_token>
+```
+
+Perfis e autorização:
+- `admin`: acesso completo
+- `user` (default): acesso restrito a recursos específicos
+
+O Swagger inclui o botão Authorize (cadeado no topo direito) para testar endpoints autenticados.
+
+
+## 🩺 Health Check
+A API expõe um endpoint de monitoramento de saúde:
+
+```http
+GET /api/v1/health
+```
+
+Este endpoint é utilizado para verificação de **disponibilidade**, **readiness probes** e **monitoramento de banco** (via `IottuDbContext`).
 
 ## 🧪 Testes
 A solução possui cobertura de testes unitários e de integração com `xUnit`.

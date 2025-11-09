@@ -9,7 +9,8 @@ namespace Web.Iottu.Api.Catalog.Controllers
     /// Endpoints para gerenciamento de Usuários.
     /// </summary>
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class UsuariosController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;

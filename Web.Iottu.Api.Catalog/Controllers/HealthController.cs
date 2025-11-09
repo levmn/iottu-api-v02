@@ -8,7 +8,8 @@ namespace Web.Iottu.Api.Catalog.Controllers
     /// Endpoint de monitoramento de saúde da aplicação.
     /// </summary>
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class HealthController : ControllerBase
     {
         private readonly HealthCheckService _healthCheckService;
