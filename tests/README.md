@@ -12,4 +12,4 @@ O arquivo `.json` com a collection se encontra na raiz do diretorio `/tests`, as
 📃 tests/iottu.postman_collection.json
 ```
 
-[Link do video de evidência]()
+[Link do video de evidência](https://youtu.be/2oJX_Rc_UdQ)
