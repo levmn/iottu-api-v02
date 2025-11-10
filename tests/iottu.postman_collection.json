@@ -1,0 +1,528 @@
+{
+	"info": {
+		"_postman_id": "77dad902-2f3c-4dd5-8241-c696057d36d8",
+		"name": "Iottu API",
+		"description": "Testes automatizados da API Iottu.\n\nIottu é um sistema para localização e controle de motos, inspirado em um desafio real proposto pela Mottu.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19250276"
+	},
+	"item": [
+		{
+			"name": "Pátios",
+			"item": [
+				{
+					"name": "Listar Pátios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200 - Pátios listados\", () => pm.response.to.have.status(200));",
+									"",
+									"const json = pm.response.json();",
+									"pm.expect(json).to.have.property(\"items\");",
+									"",
+									"pm.test(\"Estrutura de paginação válida\", () => {",
+									"  pm.expect(json).to.have.property(\"page\");",
+									"  pm.expect(json).to.have.property(\"totalItems\");",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/patios?page=1&pageSize=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patios"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Pátio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 201 - Pátio criado\", () => pm.response.to.have.status(201));",
+									"",
+									"const json = pm.response.json();",
+									"pm.collectionVariables.set(\"patioId\", json.Id);",
+									"",
+									"pm.test(\"Pátio contém ID\", () => pm.expect(json).to.have.property(\"Id\"));",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cep\": \"01310-100\",\n  \"numero\": \"1000\",\n  \"cidade\": \"São Paulo\",\n  \"estado\": \"SP\",\n  \"capacidade\": 200\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/patios"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Antenas",
+			"item": [
+				{
+					"name": "Listar Antenas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200 - Antenas listadas\", () => pm.response.to.have.status(200));",
+									"",
+									"const json = pm.response.json();",
+									"pm.expect(json).to.have.property(\"items\");",
+									"",
+									"if (json.items.length > 0) {",
+									"  pm.expect(json.items[0]).to.have.property(\"Identificador\");",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/antenas?page=1&pageSize=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"antenas"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Antena",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 201 - Antena criada\", () => pm.response.to.have.status(201));",
+									"",
+									"const json = pm.response.json();",
+									"pm.collectionVariables.set(\"antenaId\", json.Id);",
+									"",
+									"pm.expect(json).to.have.property(\"PatioId\");",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"localizacao\": \"Portão Principal\",\n  \"identificador\": \"ANT-SP-01\",\n  \"patioId\": \"{{patioId}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/antenas"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Motos",
+			"item": [
+				{
+					"name": "Criar Moto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 201 - Moto criada\", () => pm.response.to.have.status(201));",
+									"",
+									"const json = pm.response.json();",
+									"pm.collectionVariables.set(\"motoId\", json.Id);",
+									"",
+									"pm.test(\"Moto contém propriedades esperadas\", () => {",
+									"  pm.expect(json).to.have.property(\"Placa\");",
+									"  pm.expect(json).to.have.property(\"PatioId\");",
+									"  pm.expect(json).to.have.property(\"TagId\");",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"placa\": \"ABC1D23\",\n  \"modelo\": \"Honda CG 160 Start\",\n  \"chassi\": \"9C2KC0810LR123456\",\n  \"numeroMotor\": \"MTR123456789\",\n  \"statusId\": 1,\n  \"tagId\": \"{{tagId}}\",\n  \"patioId\": \"{{patioId}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/motos"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Motos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200 - Motos listadas\", () => pm.response.to.have.status(200));",
+									"",
+									"const json = pm.response.json();",
+									"pm.expect(json).to.have.property(\"items\");"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/motos?page=1&pageSize=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"motos"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "Criar Tag",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 201 - Tag criada\", () => pm.response.to.have.status(201));",
+									"",
+									"const json = pm.response.json();",
+									"pm.collectionVariables.set(\"tagId\", json.Id);",
+									"",
+									"pm.test(\"Campos obrigatórios da Tag estão presentes\", () => {",
+									"  pm.expect(json).to.have.property(\"CodigoRFID\");",
+									"  pm.expect(json).to.have.property(\"AntenaId\");",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigoRFID\": \"RFID-TAG-0001\",\n  \"ssidWifi\": \"TAG_WIFI_01\",\n  \"latitude\": -23.564,\n  \"longitude\": -46.652,\n  \"dataHora\": \"2025-11-09T14:30:00Z\",\n  \"antenaId\": \"{{antenaId}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/tags"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Tags",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200 - Tags listadas\", () => pm.response.to.have.status(200));",
+									"",
+									"const json = pm.response.json();",
+									"pm.expect(json).to.have.property(\"items\");",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/tags?page=1&pageSize=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tags"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 200 - Login bem-sucedido\", () => pm.response.to.have.status(200));",
+							"",
+							"const json = pm.response.json();",
+							"pm.environment.set(\"token\", json.accessToken);",
+							"",
+							"pm.test(\"Token JWT retornado\", () => pm.expect(json.accessToken).to.exist);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/auth/login"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "patioId",
+			"value": ""
+		},
+		{
+			"key": "antenaId",
+			"value": ""
+		},
+		{
+			"key": "tagId",
+			"value": ""
+		},
+		{
+			"key": "motoId",
+			"value": ""
+		}
+	]
+}

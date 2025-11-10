@@ -20,7 +20,9 @@ namespace Core.Iottu.Application.Services
             {
                 Id = a.Id,
                 Localizacao = a.Localizacao,
-                Identificador = a.Identificador
+                Identificador = a.Identificador,
+                PatioId = a.PatioId,
+                PatioDescricao = a.Patio != null ? $"{a.Patio.Cidade} - {a.Patio.Estado}" : null
             });
         }
 
@@ -28,6 +30,7 @@ namespace Core.Iottu.Application.Services
         {
             return await _antenaRepository.CountAsync();
         }
+
 
         public async Task<AntenaDto?> GetByIdAsync(Guid id)
         {
@@ -38,40 +41,48 @@ namespace Core.Iottu.Application.Services
             {
                 Id = antena.Id,
                 Localizacao = antena.Localizacao,
-                Identificador = antena.Identificador
+                Identificador = antena.Identificador,
+                PatioId = antena.PatioId,
+                PatioDescricao = antena.Patio != null ? $"{antena.Patio.Cidade} - {antena.Patio.Estado}" : null
             };
         }
 
         public async Task<AntenaDto> CreateAsync(CreateAntenaDto dto)
         {
             var antena = new Antena(dto.Localizacao, dto.Identificador);
+            typeof(Antena).GetProperty("PatioId")!.SetValue(antena, dto.PatioId);
+
             await _antenaRepository.AddAsync(antena);
 
             return new AntenaDto
             {
                 Id = antena.Id,
                 Localizacao = antena.Localizacao,
-                Identificador = antena.Identificador
+                Identificador = antena.Identificador,
+                PatioId = antena.PatioId
             };
         }
+
 
         public async Task<AntenaDto?> UpdateAsync(Guid id, UpdateAntenaDto dto)
         {
             var antena = await _antenaRepository.GetByIdAsync(id);
             if (antena == null) return null;
 
-            var updated = new Antena(dto.Localizacao, dto.Identificador);
-            typeof(Antena).GetProperty("Id")!.SetValue(updated, antena.Id);
-            await _antenaRepository.UpdateAsync(updated);
+            antena = new Antena(dto.Localizacao, dto.Identificador);
+            typeof(Antena).GetProperty("Id")!.SetValue(antena, id);
+            typeof(Antena).GetProperty("PatioId")!.SetValue(antena, dto.PatioId);
+
+            await _antenaRepository.UpdateAsync(antena);
 
             return new AntenaDto
             {
-                Id = updated.Id,
-                Localizacao = updated.Localizacao,
-                Identificador = updated.Identificador
+                Id = antena.Id,
+                Localizacao = antena.Localizacao,
+                Identificador = antena.Identificador,
+                PatioId = antena.PatioId
             };
         }
-
         public async Task<bool> DeleteAsync(Guid id)
         {
             var antena = await _antenaRepository.GetByIdAsync(id);
